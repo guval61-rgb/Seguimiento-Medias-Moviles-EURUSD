@@ -1,0 +1,872 @@
+SCRIPT 1: analisis_señales_mas.py
+ANÁLISIS DE SEÑALES - Sistema Medias Móviles
+================================================================================
+Ingresa la ruta del archivo CSV de señales: MAs_Señales_EURUSD_M5_2023_06_15.csv
+================================================================================
+CARGANDO DATOS - CSV SEÑALES
+================================================================================
+
+Datos cargados: 370060 señales
+Rango de fechas: 2023-06-15 01:00:00 a 2025-12-12 23:20:00
+Timeframe: M5
+
+Columnas disponibles:
+['Timestamp', 'Timeframe', 'Tipo', 'Combinacion', 'Precio', 'Cond_a', 'Cond_b', 'Cond_c', 'Cond_d', 'Cond_e', 'Hora', 'Dia_Semana', 'Tracking_Iniciado', 'Razon_No_Iniciado', 'MA200', 'MA220', 'MA100', 'MA105', 'MA50', 'MA53', 'MA20', 'MA22', 'MA5']
+
+================================================================================
+ANÁLISIS 1: FRECUENCIA DE SEÑALES
+================================================================================
+
+--- Señales por Tipo ---
+Tipo
+BUY     195591
+SELL    174469
+Name: count, dtype: int64
+
+Total: 370060 señales
+
+--- Señales por Combinación ---
+Combinacion
+A    67155
+B    92847
+C    75592
+E    74832
+F    59634
+Name: count, dtype: int64
+
+--- Señales por Tipo y Combinación ---
+Tipo           BUY   SELL
+Combinacion
+A            35835  31320
+B            48875  43972
+C            39980  35612
+E            39627  35205
+F            31274  28360
+
+--- Tracking Iniciado ---
+Tracking_Iniciado
+NO    367057
+SI      3003
+Name: count, dtype: int64
+
+Porcentaje de señales que iniciaron tracking: 0.81%
+
+--- Razones de No Inicio ---
+Razon_No_Iniciado
+TRACKING_YA_ACTIVO    367057
+Name: count, dtype: int64
+
+================================================================================
+ANÁLISIS 2: CONDICIONES INDIVIDUALES
+================================================================================
+
+--- Frecuencia de Activación ---
+Cond_a: 370060 veces (100.00%)
+Cond_b: 351339 veces (94.94%)
+Cond_c: 350226 veces (94.64%)
+Cond_d: 344368 veces (93.06%)
+Cond_e: 252095 veces (68.12%)
+
+--- Condiciones BUY ---
+Cond_a: 195591 veces (100.00%)
+Cond_b: 186390 veces (95.30%)
+Cond_c: 185877 veces (95.03%)
+Cond_d: 182551 veces (93.33%)
+Cond_e: 133974 veces (68.50%)
+
+--- Condiciones SELL ---
+Cond_a: 174469 veces (100.00%)
+Cond_b: 164949 veces (94.54%)
+Cond_c: 164349 veces (94.20%)
+Cond_d: 161817 veces (92.75%)
+Cond_e: 118121 veces (67.70%)
+
+--- Patrones de Condiciones Más Frecuentes ---
+patron_conds
+abcde    216545
+abcd      95384
+abc       16676
+abde      10562
+acde       9856
+abce       9016
+ade        6116
+abd        3156
+acd        2749
+Name: count, dtype: int64
+
+================================================================================
+ANÁLISIS 3: DISTRIBUCIÓN TEMPORAL
+================================================================================
+
+--- Señales por Hora ---
+Hora
+0     13094
+1     13951
+2     13547
+3     14021
+4     14181
+5     14550
+6     13953
+7     14038
+8     13937
+9     14729
+10    15397
+11    17269
+12    17742
+13    16512
+14    16630
+15    17230
+16    18338
+17    18027
+18    17414
+19    16218
+20    15128
+21    14948
+22    14793
+23    14413
+Name: count, dtype: int64
+
+--- Señales por Día de Semana ---
+Dia_Nombre
+Jueves       79399
+Martes       74500
+Miércoles    72705
+Lunes        71861
+Viernes      71595
+Name: count, dtype: int64
+
+--- Top 5 Horas BUY ---
+Hora
+12    9612
+1     9528
+16    9468
+11    9315
+17    9086
+Name: count, dtype: int64
+
+--- Top 5 Horas SELL ---
+Hora
+17    8941
+16    8870
+18    8827
+15    8478
+19    8173
+Name: count, dtype: int64
+
+--- Día Más Activo por Combinación ---
+Combinación E: Jueves (16058 señales)
+Combinación F: Jueves (12696 señales)
+Combinación A: Jueves (14544 señales)
+Combinación B: Jueves (19858 señales)
+Combinación C: Jueves (16243 señales)
+
+================================================================================
+ANÁLISIS 4: MEDIAS MÓVILES EN SEÑALES
+================================================================================
+
+--- Estadísticas de MAs ---
+
+MA200:
+  Media: 1.09591
+  Std: 0.03777
+  Min: 1.02074
+  Max: 1.18596
+
+MA220:
+  Media: 1.09589
+  Std: 0.03776
+  Min: 1.02085
+  Max: 1.18588
+
+MA100:
+  Media: 1.09595
+  Std: 0.03782
+  Min: 1.02016
+  Max: 1.18660
+
+MA105:
+  Media: 1.09595
+  Std: 0.03781
+  Min: 1.02019
+  Max: 1.18659
+
+MA50:
+  Media: 1.09598
+  Std: 0.03785
+  Min: 1.01961
+  Max: 1.18678
+
+MA53:
+  Media: 1.09597
+  Std: 0.03784
+  Min: 1.01966
+  Max: 1.18675
+
+MA20:
+  Media: 1.09599
+  Std: 0.03787
+  Min: 1.01935
+  Max: 1.18747
+
+MA22:
+  Media: 1.09599
+  Std: 0.03787
+  Min: 1.01937
+  Max: 1.18730
+
+MA5:
+  Media: 1.09600
+  Std: 0.03789
+  Min: 1.01901
+  Max: 1.18980
+
+--- Separación entre MAs (en pips) ---
+Condición a (MA200-MA220): 0.12 pips (media)
+Condición b (MA100-MA105): 0.04 pips (media)
+Condición c (MA50-MA53): 0.04 pips (media)
+Condición d (MA20-MA22): 0.04 pips (media)
+
+================================================================================
+GENERANDO VISUALIZACIONES
+================================================================================
+
+✓ Visualización guardada: analisis_señales_visualizacion.png
+
+================================================================================
+REPORTE FINAL - RESUMEN EJECUTIVO
+================================================================================
+
+ESTADÍSTICAS GENERALES:
+- Total de Señales: 370060
+- Señales BUY: 195591 (52.9%)
+- Señales SELL: 174469 (47.1%)
+- Tracking Iniciado: 0.8%
+
+MEJOR COMBINACIÓN:
+- Combinación B: 92847 señales
+
+PATRONES TEMPORALES:
+- Hora más activa: 16:00 (18338 señales)
+- Día más activo: Jueves (79399 señales)
+
+CONDICIONES MÁS ACTIVADAS:
+
+1. Cond_a: 370060 veces (100.0%)
+2. Cond_b: 351339 veces (94.9%)
+3. Cond_c: 350226 veces (94.6%)
+
+================================================================================
+
+================================================================================
+EXPORTANDO RESULTADOS
+================================================================================
+✓ resumen_por_combinacion.csv
+✓ resumen_por_hora.csv
+✓ resumen_por_dia.csv
+
+================================================================================
+ANÁLISIS COMPLETADO
+********************
+********************
+SCRIPT 2: analisis_performance_mas.py
+
+ANÁLISIS DE PERFORMANCE - Sistema Medias Móviles
+================================================================================
+Ingresa la ruta del archivo CSV de resumen: MAs_Resumen_EURUSD_M5_2023_06_15.csv
+================================================================================
+CARGANDO DATOS - CSV RESUMEN
+================================================================================
+
+Datos cargados: 2993 trades
+Rango de fechas: 2023-06-15 01:00:00 a 2025-12-11 01:25:00
+
+Columnas: 127 columnas
+
+Primeras columnas:
+['ID', 'Timestamp_Entrada', 'Tipo', 'Combinacion', 'Precio_Entrada', 'Hora_Entrada', 'Dia_Semana', 'Bars_Total', 'Pips_Maximo', 'Precio_Maximo', 'Timestamp_Maximo', 'Pips_Minimo', 'Precio_Minimo', 'MA200_Entry', 'MA220_Entry', 'MA100_Entry', 'MA105_Entry', 'MA50_Entry', 'MA53_Entry', 'MA20_Entry', 'MA22_Entry', 'MA5_Entry', 'MA200_Exit', 'MA220_Exit', 'MA100_Exit', 'MA105_Exit', 'MA50_Exit', 'MA53_Exit', 'MA20_Exit', 'MA22_Exit']
+
+================================================================================
+ANÁLISIS 1: PERFORMANCE POR COMBINACIÓN
+================================================================================
+
+--- COMBINACIÓN A ---
+Total trades: 588
+  BUY: 296
+  SELL: 292
+
+Pips Máximo alcanzado:
+  Media: 43.30 pips
+  Mediana: 36.00 pips
+  Std: 36.21 pips
+  Max: 276.20 pips
+
+Pips Mínimo (drawdown):
+  Media: -46.16 pips
+  Mediana: -37.20 pips
+  Min: -210.00 pips
+
+Duración:
+  Media: 481.9 bars
+  Mediana: 500.0 bars
+
+--- COMBINACIÓN B ---
+Total trades: 598
+  BUY: 304
+  SELL: 294
+
+Pips Máximo alcanzado:
+  Media: 42.97 pips
+  Mediana: 34.90 pips
+  Std: 35.94 pips
+  Max: 258.40 pips
+
+Pips Mínimo (drawdown):
+  Media: -46.32 pips
+  Mediana: -36.70 pips
+  Min: -220.70 pips
+
+Duración:
+  Media: 480.4 bars
+  Mediana: 500.0 bars
+
+--- COMBINACIÓN C ---
+Total trades: 593
+  BUY: 299
+  SELL: 294
+
+Pips Máximo alcanzado:
+  Media: 43.66 pips
+  Mediana: 36.20 pips
+  Std: 36.11 pips
+  Max: 276.20 pips
+
+Pips Mínimo (drawdown):
+  Media: -45.38 pips
+  Mediana: -36.20 pips
+  Min: -210.00 pips
+
+Duración:
+  Media: 481.5 bars
+  Mediana: 500.0 bars
+
+--- COMBINACIÓN E ---
+Total trades: 599
+  BUY: 300
+  SELL: 299
+
+Pips Máximo alcanzado:
+  Media: 43.50 pips
+  Mediana: 37.00 pips
+  Std: 36.37 pips
+  Max: 276.20 pips
+
+Pips Mínimo (drawdown):
+  Media: -45.72 pips
+  Mediana: -36.30 pips
+  Min: -210.00 pips
+
+Duración:
+  Media: 483.4 bars
+  Mediana: 500.0 bars
+
+--- COMBINACIÓN F ---
+Total trades: 615
+  BUY: 312
+  SELL: 303
+
+Pips Máximo alcanzado:
+  Media: 43.59 pips
+  Mediana: 36.50 pips
+  Std: 36.43 pips
+  Max: 302.60 pips
+
+Pips Mínimo (drawdown):
+  Media: -45.83 pips
+  Mediana: -37.10 pips
+  Min: -210.00 pips
+
+Duración:
+  Media: 484.9 bars
+  Mediana: 500.0 bars
+
+================================================================================
+TABLA RESUMEN POR COMBINACIÓN
+================================================================================
+Combinacion  Total_Trades  BUY  SELL  Pips_Max_Media  Pips_Max_Mediana  Pips_Min_Media  Bars_Media
+          A           588  296   292       43.302381              36.0      -46.156293  481.887755
+          B           598  304   294       42.966388              34.9      -46.317391  480.376254
+          C           593  299   294       43.661046              36.2      -45.384992  481.462057
+          E           599  300   299       43.501169              37.0      -45.716194  483.435726
+          F           615  312   303       43.589268              36.5      -45.832358  484.858537
+
+================================================================================
+ANÁLISIS 2: PERFORMANCE DE SALIDAS
+================================================================================
+
+--- SALIDAS PIPS FIJOS ---
+P5_Pips: 2691 exitosas (89.9%), Media: 7.51 pips
+P10_Pips: 2427 exitosas (81.1%), Media: 13.07 pips
+P15_Pips: 2235 exitosas (74.7%), Media: 18.02 pips
+P20_Pips: 2016 exitosas (67.4%), Media: 23.48 pips
+P25_Pips: 1817 exitosas (60.7%), Media: 28.77 pips
+P30_Pips: 1660 exitosas (55.5%), Media: 33.79 pips
+P50_Pips: 1056 exitosas (35.3%), Media: 54.16 pips
+P60_Pips: 833 exitosas (27.8%), Media: 64.23 pips
+P75_Pips: 550 exitosas (18.4%), Media: 79.51 pips
+P80_Pips: 479 exitosas (16.0%), Media: 84.55 pips
+P85_Pips: 426 exitosas (14.2%), Media: 89.72 pips
+P100_Pips: 269 exitosas (9.0%), Media: 107.27 pips
+
+--- SALIDAS RETROCESO ---
+R20_Pips: 2863 exitosas (95.7%), Media: 3.11 pips
+R25_Pips: 2857 exitosas (95.5%), Media: 3.07 pips
+R30_Pips: 2857 exitosas (95.5%), Media: 2.96 pips
+R35_Pips: 2857 exitosas (95.5%), Media: 2.89 pips
+R40_Pips: 2856 exitosas (95.4%), Media: 2.70 pips
+R45_Pips: 2854 exitosas (95.4%), Media: 2.55 pips
+R50_Pips: 2853 exitosas (95.3%), Media: 2.29 pips
+
+--- SALIDAS CRUCES ---
+Cruce_d_Pips: 2993 exitosas (100.0%), Media: -0.34 pips
+Cruce_c_Pips: 2993 exitosas (100.0%), Media: -0.56 pips
+Cruce_b_Pips: 2993 exitosas (100.0%), Media: -0.96 pips
+
+--- SALIDAS PROTECCIÓN ---
+SL_Pips: 26 veces (0.9%), Media: -205.58 pips
+Timeout_Pips: 2709 veces (90.5%), Media: -9.88 pips
+
+================================================================================
+RANKING DE SALIDAS (por % éxito)
+================================================================================
+      Salida       Tipo  Exitosas  Pct_Exito  Pips_Media
+Cruce_b_Pips     Cruces      2993 100.000000   -0.964751
+Cruce_c_Pips     Cruces      2993 100.000000   -0.561844
+Cruce_d_Pips     Cruces      2993 100.000000   -0.336519
+    R20_Pips  Retroceso      2863  95.656532    3.110094
+    R25_Pips  Retroceso      2857  95.456064    3.071439
+    R35_Pips  Retroceso      2857  95.456064    2.892440
+    R30_Pips  Retroceso      2857  95.456064    2.964473
+    R40_Pips  Retroceso      2856  95.422653    2.703992
+    R45_Pips  Retroceso      2854  95.355830    2.550140
+    R50_Pips  Retroceso      2853  95.322419    2.289380
+Timeout_Pips Proteccion      2709  90.511193   -9.878258
+     P5_Pips Pips Fijos      2691  89.909790    7.507321
+    P10_Pips Pips Fijos      2427  81.089208   13.073960
+    P15_Pips Pips Fijos      2235  74.674240   18.019732
+    P20_Pips Pips Fijos      2016  67.357167   23.482490
+    P25_Pips Pips Fijos      1817  60.708319   28.765713
+    P30_Pips Pips Fijos      1660  55.462746   33.787530
+    P50_Pips Pips Fijos      1056  35.282325   54.158902
+    P60_Pips Pips Fijos       833  27.831607   64.228331
+    P75_Pips Pips Fijos       550  18.376211   79.506545
+    P80_Pips Pips Fijos       479  16.004009   84.547599
+    P85_Pips Pips Fijos       426  14.233211   89.720892
+   P100_Pips Pips Fijos       269   8.987638  107.266914
+     SL_Pips Proteccion        26   0.868694 -205.576923
+
+================================================================================
+TOP 5 MEJORES SALIDAS
+================================================================================
+Cruce_b_Pips: 100.0% éxito, -0.96 pips media
+Cruce_c_Pips: 100.0% éxito, -0.56 pips media
+Cruce_d_Pips: 100.0% éxito, -0.34 pips media
+R20_Pips: 95.7% éxito, 3.11 pips media
+R25_Pips: 95.5% éxito, 3.07 pips media
+
+================================================================================
+ANÁLISIS 3: BUY VS SELL
+================================================================================
+
+Total BUY: 1511
+Total SELL: 1482
+
+--- PIPS MÁXIMO ---
+BUY - Media: 45.94 pips
+SELL - Media: 40.82 pips
+Diferencia: 5.13 pips a favor de BUY
+
+--- PIPS MÍNIMO (Drawdown) ---
+BUY - Media: -44.25 pips
+SELL - Media: -47.54 pips
+
+--- DURACIÓN ---
+BUY - Media: 478.2 bars
+SELL - Media: 486.7 bars
+
+--- MEJOR SALIDA: P30_Pips ---
+BUY alcanzó 30 pips: 846 veces (56.0%)
+SELL alcanzó 30 pips: 814 veces (54.9%)
+
+================================================================================
+ANÁLISIS 4: PERFORMANCE TEMPORAL
+================================================================================
+
+--- Performance por Hora de Entrada ---
+             Pips_Maximo               Bars_Total
+                   count   mean median       mean
+Hora_Entrada
+0                     84  38.10  26.90     490.80
+1                     97  53.53  61.30     475.22
+2                     90  47.41  31.70     482.56
+3                    147  33.24  23.90     494.70
+4                    157  44.17  39.70     474.32
+5                    133  42.13  37.60     469.14
+6                    119  41.70  40.60     482.86
+7                    133  45.14  36.40     466.36
+8                    160  44.16  39.40     485.93
+9                    186  49.23  44.40     484.02
+10                   198  45.84  45.20     489.93
+11                   177  40.43  31.30     481.13
+12                   123  36.79  26.80     477.34
+13                   109  32.98  26.40     496.83
+14                   120  35.00  24.15     492.91
+15                   190  46.04  31.95     483.15
+16                   132  45.55  46.70     476.32
+17                   145  45.51  40.40     494.23
+18                    83  48.95  37.70     491.77
+19                    81  48.78  39.60     469.09
+20                    65  54.05  54.50     455.34
+21                    82  43.75  34.45     480.88
+22                    85  42.98  39.70     479.44
+23                    97  40.81  29.80     486.34
+
+Mejor hora: 20:00 (54.05 pips media)
+
+--- Performance por Día de Semana ---
+           Pips_Maximo               Bars_Total
+                 count   mean median       mean
+Dia_Nombre
+Jueves             605  47.44  33.90     479.14
+Lunes              532  39.93  38.95     493.37
+Martes             618  44.46  40.25     481.12
+Miércoles          583  46.18  32.00     476.73
+Viernes            655  39.03  30.40     482.85
+
+Mejor día: Jueves (47.44 pips media)
+
+================================================================================
+ANÁLISIS 5: ANÁLISIS PROFUNDO - MEJOR COMBINACIÓN
+================================================================================
+
+MEJOR COMBINACIÓN: C
+
+Total trades: 593
+BUY: 299
+SELL: 294
+
+Distribución de Pips Máximo:
+  0-10 pips: 112
+  10-20 pips: 79
+  20-30 pips: 73
+  30-50 pips: 117
+  50+ pips: 212
+
+--- Mejores Salidas para Combinación C ---
+  Salida  Exitosas  Pct_Exito
+ P5_Pips       538  90.725126
+P10_Pips       481  81.112985
+P15_Pips       449  75.716695
+P20_Pips       404  68.128162
+P25_Pips       358  60.370995
+
+================================================================================
+GENERANDO VISUALIZACIONES
+================================================================================
+
+✓ Visualización guardada: analisis_performance_visualizacion.png
+
+Generando gráfico comparativo de salidas...
+✓ comparacion_salidas.png
+
+================================================================================
+REPORTE EJECUTIVO - RESULTADOS CLAVE
+================================================================================
+
+RESULTADOS GENERALES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total de Trades Analizados: 2993
+  • BUY: 1511 (50.5%)
+  • SELL: 1482 (49.5%)
+
+MEJOR COMBINACIÓN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Combinación C
+  • Pips Máximo Promedio: 43.66 pips
+  • Total Trades: 593
+
+MEJOR SALIDA:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Cruce_d_Pips
+  • % Éxito: 100.0%
+  • Pips Promedio: -0.34 pips
+
+ESTADÍSTICAS GENERALES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Pips Máximo (Media): 43.41 pips
+  • Pips Mínimo/Drawdown (Media): -45.88 pips
+  • Duración Media: 482.4 bars
+  • Máximo alcanzado: 302.60 pips
+  • Mínimo alcanzado: -220.70 pips
+
+RECOMENDACIONES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Usar Combinación C como base
+2. Implementar salida Cruce_d_Pips (100.0% efectividad)
+3. Considerar ratio riesgo/beneficio basado en pips máximos promedio
+
+================================================================================
+
+================================================================================
+EXPORTANDO RESULTADOS
+================================================================================
+✓ resumen_combinaciones.csv
+✓ resumen_salidas.csv
+
+================================================================================
+ANÁLISIS COMPLETADO
+**********************
+**********************
+**********************
+ANÁLISIS INTEGRADO - Sistema Medias Móviles
+================================================================================
+================================================================================
+ANÁLISIS INTEGRADO - CARGANDO DATOS
+================================================================================
+Ruta del CSV de SEÑALES: MAs_Señales_EURUSD_M5_2023_06_15.csv
+Ruta del CSV de RESUMEN: MAs_Resumen_EURUSD_M5_2023_06_15.csv
+
+Señales cargadas: 370060
+Resumen cargado: 2993 trades
+
+================================================================================
+ANÁLISIS 1: RELACIÓN MAs ENTRY vs PERFORMANCE
+================================================================================
+
+--- Correlación Separación MAs vs Pips Máximo ---
+Sep_a (MA200-MA220): 0.1621
+Sep_b (MA100-MA105): 0.1001
+Sep_c (MA50-MA53): 0.0885
+Sep_d (MA20-MA22): 0.1040
+
+--- Performance por Cuartil de Separación MA20-MA22 ---
+          Pips_Maximo               Bars_Total
+                count   mean median       mean
+Cuartil_d
+Q1                819  38.57   30.2     485.02
+Q2                680  42.53   34.0     483.29
+Q3                751  40.87   33.2     484.24
+Q4                743  52.09   43.7     476.92
+
+================================================================================
+ANÁLISIS 2: TIMING ÓPTIMO
+================================================================================
+
+--- Performance por Hora ---
+Performance_Cat  Bajo (<10)  Medio (10-20)  Bueno (20-30)  Excelente (>30)
+Hora_Entrada
+0                      11.9           16.7           27.4             44.0
+1                      17.5            4.1           17.5             60.8
+2                      21.1           13.3           12.2             53.3
+3                      19.7           24.5           15.0             40.8
+4                      20.4           15.9            1.3             62.4
+5                      24.8            6.8           12.8             55.6
+6                      24.4            7.6            6.7             61.3
+7                      12.0           21.1           12.8             54.1
+8                      11.9           18.1            6.2             63.7
+9                      18.3           15.6            2.7             63.4
+10                     15.2           10.1           13.6             61.1
+11                     12.4           19.8           15.8             52.0
+12                     32.5           14.6            6.5             46.3
+13                     24.8           16.5           13.8             45.0
+14                     20.8           25.0            8.3             45.8
+15                     23.7            8.9           16.8             50.5
+16                     20.5           12.1            7.6             59.8
+17                     17.9            4.8           16.6             60.7
+18                     20.5           12.0            3.6             63.9
+19                     23.5            2.5           17.3             56.8
+20                     18.5            9.2            7.7             64.6
+21                     23.2            8.5           17.1             51.2
+22                     10.6           14.1           17.6             57.6
+23                     10.3           26.8           15.5             47.4
+
+--- Top 5 Horas con Mayor % de Trades Excelentes (>30 pips) ---
+Hora 20: 64.6% (42/65 trades)
+Hora 18: 63.9% (53/83 trades)
+Hora 8: 63.7% (102/160 trades)
+Hora 9: 63.4% (118/186 trades)
+Hora 4: 62.4% (98/157 trades)
+
+--- Performance por Día ---
+Performance_Cat  Bajo (<10)  Medio (10-20)  Bueno (20-30)  Excelente (>30)
+Dia_Nombre
+Jue                    16.9           13.2           15.7             54.2
+Lun                    16.7           18.0            7.3             57.9
+Mar                    18.6           12.6            7.3             61.5
+Mie                    18.7           14.4           13.6             53.3
+Vie                    23.1           12.4           14.4             50.2
+
+================================================================================
+ANÁLISIS 3: BUY VS SELL - ANÁLISIS PROFUNDO
+================================================================================
+
+--- Pips Máximo Promedio: BUY vs SELL por Combinación ---
+               BUY   SELL  Diferencia
+Combinacion
+A            46.27  40.29       -5.98
+B            45.02  40.84       -4.19
+C            46.39  40.89       -5.50
+E            46.23  40.76       -5.47
+F            45.82  41.29       -4.53
+
+--- Mejor Tipo por Hora ---
+Tipo            BUY   SELL Mejor
+Hora_Entrada
+0             48.51  27.68   BUY
+1             55.44  50.81   BUY
+2             62.15  29.80   BUY
+3             32.59  34.04  SELL
+4             51.05  39.18   BUY
+5             42.58  41.61   BUY
+6             43.72  37.70   BUY
+7             42.18  48.74  SELL
+8             46.54  42.00   BUY
+9             66.59  30.71   BUY
+10            45.13  46.36  SELL
+11            41.29  39.79   BUY
+12            35.69  38.06  SELL
+13            34.01  31.39   BUY
+14            35.82  33.92   BUY
+15            50.47  43.08   BUY
+16            40.23  50.11  SELL
+17            54.92  38.28   BUY
+18            45.69  55.01  SELL
+19            40.52  61.43  SELL
+20            52.32  55.63  SELL
+21            48.30  41.25   BUY
+22            41.03  45.51  SELL
+23            50.49  30.52   BUY
+
+================================================================================
+ANÁLISIS 4: MEJOR SALIDA POR COMBINACIÓN
+================================================================================
+
+--- Combinación A ---
+P10_Pips: 80.8% (475/588)
+P20_Pips: 67.3% (396/588)
+P30_Pips: 54.8% (322/588)
+P50_Pips: 34.9% (205/588)
+P100_Pips: 8.8% (52/588)
+
+--- Combinación B ---
+P10_Pips: 80.6% (482/598)
+P20_Pips: 66.9% (400/598)
+P30_Pips: 55.4% (331/598)
+P50_Pips: 35.3% (211/598)
+P100_Pips: 9.0% (54/598)
+
+--- Combinación C ---
+P10_Pips: 81.1% (481/593)
+P20_Pips: 68.1% (404/593)
+P30_Pips: 55.5% (329/593)
+P50_Pips: 35.8% (212/593)
+P100_Pips: 8.9% (53/593)
+
+--- Combinación E ---
+P10_Pips: 81.6% (489/599)
+P20_Pips: 66.9% (401/599)
+P30_Pips: 55.9% (335/599)
+P50_Pips: 35.2% (211/599)
+P100_Pips: 9.0% (54/599)
+
+--- Combinación F ---
+P10_Pips: 81.3% (500/615)
+P20_Pips: 67.5% (415/615)
+P30_Pips: 55.8% (343/615)
+P50_Pips: 35.3% (217/615)
+P100_Pips: 9.1% (56/615)
+
+================================================================================
+ANÁLISIS 5: RATIO RIESGO/BENEFICIO
+================================================================================
+
+Ratio Riesgo/Beneficio Promedio: 10.82
+Mediana: 0.91
+
+--- Ratio R/B por Combinación ---
+Combinacion
+F    14.18
+E    11.38
+A    10.93
+B     9.43
+C     8.04
+Name: Ratio_RB, dtype: float64
+
+--- Ratio R/B por Tipo ---
+Tipo
+BUY     15.21
+SELL     6.34
+Name: Ratio_RB, dtype: float64
+
+================================================================================
+GENERANDO VISUALIZACIONES INTEGRADAS
+================================================================================
+
+✓ analisis_integrado_visualizacion.png
+
+================================================================================
+RECOMENDACIONES FINALES
+================================================================================
+
+╔═══════════════════════════════════════════════════════════════════╗
+║                   ESTRATEGIA RECOMENDADA                          ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+1. COMBINACIÓN ÓPTIMA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   → Usar COMBINACIÓN C
+   → Performance esperada: 43.66 pips promedio
+
+2. SALIDA RECOMENDADA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   → Implementar P10_Pips
+   → Efectividad: 81.1%
+
+3. TIMING ÓPTIMO
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   → Operar preferentemente a las 20:00 horas
+   → Performance en esta hora: 54.05 pips promedio
+
+4. DIRECCIÓN PREFERIDA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   → Priorizar trades BUY
+   → Performance BUY: 45.94 pips promedio
+
+5. CONDICIONES DE ENTRADA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   → Correlación más fuerte: Sep_a (MA200-MA220)
+   → Valor de correlación: 0.1621
+   → Considerar amplitud de separación entre MAs como filtro adicional
+
+6. GESTIÓN DE RIESGO
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   → Drawdown promedio: -45.88 pips
+   → Considerar StopLoss de protección
+   → Ratio R/B promedio: 10.82:1
+
+╔═══════════════════════════════════════════════════════════════════╗
+║                      PRÓXIMOS PASOS                               ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+1. Backtest específico con la estrategia recomendada
+2. Validación en diferentes timeframes
+3. Optimización de parámetros de MAs
+4. Forward testing en demo
+5. Implementación gradual en cuenta real
+
+
+================================================================================
+ANÁLISIS INTEGRADO COMPLETADO
+
+
+
+
