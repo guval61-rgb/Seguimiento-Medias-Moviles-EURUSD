@@ -1,4 +1,4 @@
-C:\TradingAnalysis>python analisis_timeout_optimo.py
+
 ANÁLISIS DE TIMEOUT ÓPTIMO
 ================================================================================
 Ingresa la ruta del archivo CSV (TimeoutStudy_...csv): TimeoutStudy_EURUSD_M5_2023_06_15.csv
@@ -6,8 +6,8 @@ Ingresa la ruta del archivo CSV (TimeoutStudy_...csv): TimeoutStudy_EURUSD_M5_20
 ANÁLISIS DE TIMEOUT ÓPTIMO
 ================================================================================
 
-Datos cargados: 10000 señales
-Rango: 2023-06-15 00:05:00 a 2023-07-10 01:30:00
+Datos cargados: 403503 señales
+Rango: 2023-06-15 00:05:00 a 2025-12-12 23:20:00
 
 Columnas: 55
 
@@ -16,14 +16,14 @@ ANÁLISIS 1: PERFORMANCE POR TIMEOUT
 ================================================================================
 
 --- TIMEOUT 25 BARS ---
-Pips Cierre: Media=0.02, Mediana=0.50, Std=12.75
-Duración: 21.7 bars promedio
-Pips Máximo alcanzado: 6.03 pips
-Pips Mínimo (drawdown): -7.30 pips
+Pips Cierre: Media=-0.30, Mediana=0.30, Std=12.40
+Duración: 21.5 bars promedio
+Pips Máximo alcanzado: 6.02 pips
+Pips Mínimo (drawdown): -7.97 pips
 
 Distribución de Salidas:
-  TIMEOUT: 75.5%
-  P10: 24.5%
+  TIMEOUT: 73.4%
+  P10: 26.6%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
@@ -31,14 +31,14 @@ Distribución de Salidas:
   SL: 0.0%
 
 --- TIMEOUT 50 BARS ---
-Pips Cierre: Media=-0.70, Mediana=1.50, Std=16.30
-Duración: 38.6 bars promedio
-Pips Máximo alcanzado: 7.39 pips
-Pips Mínimo (drawdown): -10.80 pips
+Pips Cierre: Media=-0.38, Mediana=2.40, Std=15.96
+Duración: 37.9 bars promedio
+Pips Máximo alcanzado: 7.51 pips
+Pips Mínimo (drawdown): -11.24 pips
 
 Distribución de Salidas:
-  TIMEOUT: 62.5%
-  P10: 37.5%
+  TIMEOUT: 59.6%
+  P10: 40.4%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
@@ -46,14 +46,14 @@ Distribución de Salidas:
   SL: 0.0%
 
 --- TIMEOUT 75 BARS ---
-Pips Cierre: Media=-0.82, Mediana=4.10, Std=18.88
-Duración: 53.3 bars promedio
-Pips Máximo alcanzado: 8.15 pips
-Pips Mínimo (drawdown): -13.03 pips
+Pips Cierre: Media=-0.54, Mediana=8.10, Std=18.42
+Duración: 51.6 bars promedio
+Pips Máximo alcanzado: 8.34 pips
+Pips Mínimo (drawdown): -13.52 pips
 
 Distribución de Salidas:
-  TIMEOUT: 55.3%
-  P10: 44.7%
+  TIMEOUT: 50.8%
+  P10: 49.1%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
@@ -61,14 +61,14 @@ Distribución de Salidas:
   SL: 0.0%
 
 --- TIMEOUT 100 BARS ---
-Pips Cierre: Media=0.10, Mediana=10.10, Std=20.84
-Duración: 66.1 bars promedio
-Pips Máximo alcanzado: 9.01 pips
-Pips Mínimo (drawdown): -14.36 pips
+Pips Cierre: Media=-0.66, Mediana=10.20, Std=20.41
+Duración: 63.4 bars promedio
+Pips Máximo alcanzado: 8.89 pips
+Pips Mínimo (drawdown): -15.26 pips
 
 Distribución de Salidas:
-  TIMEOUT: 47.5%
-  P10: 52.4%
+  TIMEOUT: 44.8%
+  P10: 55.1%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
@@ -76,163 +76,163 @@ Distribución de Salidas:
   SL: 0.0%
 
 --- TIMEOUT 125 BARS ---
-Pips Cierre: Media=1.35, Mediana=10.50, Std=22.73
-Duración: 76.8 bars promedio
-Pips Máximo alcanzado: 9.83 pips
-Pips Mínimo (drawdown): -15.39 pips
+Pips Cierre: Media=-0.46, Mediana=10.30, Std=21.85
+Duración: 74.0 bars promedio
+Pips Máximo alcanzado: 9.34 pips
+Pips Mínimo (drawdown): -16.63 pips
 
 Distribución de Salidas:
-  TIMEOUT: 37.9%
-  P10: 62.1%
+  TIMEOUT: 39.9%
+  P10: 60.0%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
   P100: 0.0%
-  SL: 0.0%
+  SL: 0.1%
 
 --- TIMEOUT 150 BARS ---
-Pips Cierre: Media=1.99, Mediana=10.70, Std=24.46
-Duración: 85.1 bars promedio
-Pips Máximo alcanzado: 10.36 pips
-Pips Mínimo (drawdown): -16.28 pips
+Pips Cierre: Media=-0.38, Mediana=10.50, Std=23.22
+Duración: 83.4 bars promedio
+Pips Máximo alcanzado: 9.70 pips
+Pips Mínimo (drawdown): -17.81 pips
 
 Distribución de Salidas:
-  TIMEOUT: 29.6%
-  P10: 70.4%
+  TIMEOUT: 35.9%
+  P10: 63.9%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
   P100: 0.0%
-  SL: 0.0%
+  SL: 0.1%
 
 --- TIMEOUT 175 BARS ---
-Pips Cierre: Media=2.18, Mediana=10.90, Std=25.72
-Duración: 91.6 bars promedio
-Pips Máximo alcanzado: 10.78 pips
-Pips Mínimo (drawdown): -17.17 pips
+Pips Cierre: Media=-0.26, Mediana=10.60, Std=24.39
+Duración: 91.9 bars promedio
+Pips Máximo alcanzado: 10.00 pips
+Pips Mínimo (drawdown): -18.86 pips
 
 Distribución de Salidas:
-  TIMEOUT: 24.0%
-  P10: 76.0%
+  TIMEOUT: 32.7%
+  P10: 67.2%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
   P100: 0.0%
-  SL: 0.0%
+  SL: 0.1%
 
 --- TIMEOUT 200 BARS ---
-Pips Cierre: Media=1.69, Mediana=10.90, Std=26.83
-Duración: 97.5 bars promedio
-Pips Máximo alcanzado: 10.93 pips
-Pips Mínimo (drawdown): -18.05 pips
+Pips Cierre: Media=0.01, Mediana=10.60, Std=25.26
+Duración: 99.7 bars promedio
+Pips Máximo alcanzado: 10.26 pips
+Pips Mínimo (drawdown): -19.67 pips
 
 Distribución de Salidas:
-  TIMEOUT: 23.2%
-  P10: 76.8%
+  TIMEOUT: 29.9%
+  P10: 70.0%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
   P100: 0.0%
-  SL: 0.0%
+  SL: 0.1%
 
 --- TIMEOUT 225 BARS ---
-Pips Cierre: Media=1.54, Mediana=11.00, Std=27.69
-Duración: 103.2 bars promedio
-Pips Máximo alcanzado: 11.05 pips
-Pips Mínimo (drawdown): -18.75 pips
+Pips Cierre: Media=0.09, Mediana=10.70, Std=26.12
+Duración: 106.9 bars promedio
+Pips Máximo alcanzado: 10.44 pips
+Pips Mínimo (drawdown): -20.37 pips
 
 Distribución de Salidas:
-  TIMEOUT: 21.8%
-  P10: 78.2%
+  TIMEOUT: 27.7%
+  P10: 72.1%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
   P100: 0.0%
-  SL: 0.0%
+  SL: 0.1%
 
 --- TIMEOUT 250 BARS ---
-Pips Cierre: Media=1.01, Mediana=11.00, Std=29.49
-Duración: 108.5 bars promedio
-Pips Máximo alcanzado: 11.13 pips
-Pips Mínimo (drawdown): -19.83 pips
+Pips Cierre: Media=0.15, Mediana=10.80, Std=26.84
+Duración: 113.6 bars promedio
+Pips Máximo alcanzado: 10.59 pips
+Pips Mínimo (drawdown): -21.04 pips
 
 Distribución de Salidas:
-  TIMEOUT: 20.6%
-  P10: 79.4%
+  TIMEOUT: 25.9%
+  P10: 73.9%
   P20: 0.0%
   P30: 0.0%
   P50: 0.0%
   P100: 0.0%
-  SL: 0.0%
+  SL: 0.1%
 
 ================================================================================
 TABLA COMPARATIVA
 ================================================================================
- Timeout  Pips_Mean  Pips_Median  Pips_Std  Bars_Mean  Max_Mean  Min_Mean  Pct_Timeout  Pct_P10  Pct_P20  Pct_P30  Pct_P50  Pct_P100  Pct_SL
-      25    0.02460          0.5 12.746560    21.7192   6.02913  -7.30425        75.54    24.46      0.0      0.0      0.0       0.0     0.0
-      50   -0.69787          1.5 16.302968    38.6171   7.39115 -10.79723        62.48    37.52      0.0      0.0      0.0       0.0     0.0
-      75   -0.82113          4.1 18.879912    53.2797   8.14801 -13.03279        55.26    44.74      0.0      0.0      0.0       0.0     0.0
-     100    0.10450         10.1 20.837384    66.1145   9.00563 -14.35597        47.55    52.45      0.0      0.0      0.0       0.0     0.0
-     125    1.35180         10.5 22.728739    76.7870   9.82527 -15.39007        37.92    62.08      0.0      0.0      0.0       0.0     0.0
-     150    1.99261         10.7 24.462082    85.1185  10.36003 -16.28035        29.63    70.37      0.0      0.0      0.0       0.0     0.0
-     175    2.18135         10.9 25.717149    91.6150  10.78401 -17.17115        24.02    75.98      0.0      0.0      0.0       0.0     0.0
-     200    1.68543         10.9 26.829101    97.5445  10.93326 -18.05198        23.24    76.76      0.0      0.0      0.0       0.0     0.0
-     225    1.54225         11.0 27.689082   103.1832  11.05379 -18.74947        21.75    78.25      0.0      0.0      0.0       0.0     0.0
-     250    1.00929         11.0 29.488409   108.4765  11.12546 -19.83227        20.60    79.40      0.0      0.0      0.0       0.0     0.0
+ Timeout  Pips_Mean  Pips_Median  Pips_Std  Bars_Mean  Max_Mean   Min_Mean  Pct_Timeout   Pct_P10  Pct_P20  Pct_P30  Pct_P50  Pct_P100   Pct_SL
+      25  -0.299339          0.3 12.397369  21.489290  6.017043  -7.967747    73.413828 26.566841      0.0      0.0      0.0       0.0 0.000000
+      50  -0.377339          2.4 15.964034  37.884321  7.506107 -11.242910    59.598318 40.365499      0.0      0.0      0.0       0.0 0.002726
+      75  -0.536060          8.1 18.417403  51.565163  8.337801 -13.515146    50.843984 49.115124      0.0      0.0      0.0       0.0 0.004709
+     100  -0.655043         10.2 20.409444  63.440592  8.885715 -15.256322    44.821476 55.117806      0.0      0.0      0.0       0.0 0.023296
+     125  -0.456933         10.3 21.849433  73.957049  9.335060 -16.629813    39.912467 59.974523      0.0      0.0      0.0       0.0 0.054523
+     150  -0.380188         10.5 23.223934  83.376431  9.702429 -17.813187    35.936040 63.931123      0.0      0.0      0.0       0.0 0.055762
+     175  -0.257848         10.6 24.393231  91.924157  9.999032 -18.855188    32.660476 67.202722      0.0      0.0      0.0       0.0 0.057249
+     200   0.009281         10.6 25.260371  99.718515 10.256302 -19.669502    29.854053 69.989319      0.0      0.0      0.0       0.0 0.077075
+     225   0.091166         10.7 26.117606 106.882677 10.440230 -20.373390    27.730153 72.086205      0.0      0.0      0.0       0.0 0.104088
+     250   0.147922         10.8 26.837068 113.573872 10.587558 -21.041575    25.938097 73.858683      0.0      0.0      0.0       0.0 0.122180
 
 ================================================================================
 ANÁLISIS 2: IDENTIFICAR TIMEOUT ÓPTIMO
 ================================================================================
 
-Mejor por Pips Promedio: Timeout 175 bars
-  Pips: 2.18
-  % Timeout: 24.0%
+Mejor por Pips Promedio: Timeout 250 bars
+  Pips: 0.15
+  % Timeout: 25.9%
 
 Menor % Timeout: Timeout 250 bars
-  % Timeout: 20.6%
-  Pips: 1.01
+  % Timeout: 25.9%
+  Pips: 0.15
 
-Mejor Balance (Pips/Timeout): Timeout 175 bars
-  Score: 0.0872
-  Pips: 2.18
-  % Timeout: 24.0%
+Mejor Balance (Pips/Timeout): Timeout 250 bars
+  Score: 0.0055
+  Pips: 0.15
+  % Timeout: 25.9%
 
-Mejor Aprovechamiento: Timeout 175 bars
-  Aprovechamiento: 20.2%
-  Pips capturados: 2.18 de 10.78
+Mejor Aprovechamiento: Timeout 250 bars
+  Aprovechamiento: 1.4%
+  Pips capturados: 0.15 de 10.59
 
 Menor Duración: Timeout 25 bars
-  Duración: 21.7 bars
-  Pips: 0.02
+  Duración: 21.5 bars
+  Pips: -0.30
 
 ================================================================================
 ANÁLISIS 3: TIMEOUT ÓPTIMO POR COMBINACIÓN
 ================================================================================
 
---- Combinación A (2000 señales) ---
-Mejor Timeout: 175 bars (3.21 pips promedio)
+--- Combinación A (67155 señales) ---
+Mejor Timeout: 250 bars (0.06 pips promedio)
 
---- Combinación B (2000 señales) ---
-Mejor Timeout: 150 bars (1.17 pips promedio)
+--- Combinación B (92847 señales) ---
+Mejor Timeout: 250 bars (0.03 pips promedio)
 
---- Combinación C (2000 señales) ---
-Mejor Timeout: 175 bars (2.80 pips promedio)
+--- Combinación C (75592 señales) ---
+Mejor Timeout: 250 bars (0.14 pips promedio)
 
---- Combinación E (2000 señales) ---
-Mejor Timeout: 175 bars (2.26 pips promedio)
+--- Combinación E (74832 señales) ---
+Mejor Timeout: 250 bars (0.15 pips promedio)
 
---- Combinación F (2000 señales) ---
-Mejor Timeout: 150 bars (1.75 pips promedio)
+--- Combinación F (93077 señales) ---
+Mejor Timeout: 250 bars (0.33 pips promedio)
 
 ================================================================================
 ANÁLISIS 4: BUY VS SELL - TIMEOUT ÓPTIMO
 ================================================================================
 
-Total BUY: 5000
-Total SELL: 5000
+Total BUY: 212821
+Total SELL: 190682
 
-BUY - Mejor Timeout: 175 bars (4.39 pips)
-SELL - Mejor Timeout: 25 bars (0.67 pips)
+BUY - Mejor Timeout: 250 bars (0.96 pips)
+SELL - Mejor Timeout: 25 bars (-0.53 pips)
 
 ================================================================================
 GENERANDO VISUALIZACIONES
@@ -252,36 +252,36 @@ ANÁLISIS MULTI-CRITERIO:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 1. MEJOR POR PIPS PROMEDIO:
-   → Timeout: 175 bars
-   → Pips: 2.18
-   → % Timeout: 24.0%
+   → Timeout: 250 bars
+   → Pips: 0.15
+   → % Timeout: 25.9%
 
 2. MENOR % TIMEOUT (más salidas reales):
    → Timeout: 250 bars
-   → % Timeout: 20.6%
-   → Pips: 1.01
+   → % Timeout: 25.9%
+   → Pips: 0.15
 
 3. MEJOR BALANCE (RECOMENDADO):
-   → Timeout: 175 bars
-   → Score: 0.0872
-   → Pips: 2.18
-   → % Timeout: 24.0%
+   → Timeout: 250 bars
+   → Score: 0.0055
+   → Pips: 0.15
+   → % Timeout: 25.9%
 
 4. MEJOR APROVECHAMIENTO:
-   → Timeout: 175 bars
-   → Captura: 20.2% de pips máximos
-   → Pips: 2.18
+   → Timeout: 250 bars
+   → Captura: 1.4% de pips máximos
+   → Pips: 0.15
 
 5. MÁS EFICIENTE (menor duración):
    → Timeout: 25 bars
-   → Duración: 21.7 bars
-   → Pips: 0.02
+   → Duración: 21.5 bars
+   → Pips: -0.30
 
 ╔═══════════════════════════════════════════════════════════════════╗
 ║                       DECISIÓN FINAL                              ║
 ╚═══════════════════════════════════════════════════════════════════╝
 
-TIMEOUT RECOMENDADO: 175 BARS
+TIMEOUT RECOMENDADO: 250 BARS
 
 RAZONES:
 • Mejor balance entre pips capturados y % de timeouts
@@ -290,7 +290,7 @@ RAZONES:
 • Optimiza ratio beneficio/tiempo
 
 PRÓXIMO PASO:
-Implementar timeout de 175 bars en EA de producción
+Implementar timeout de 250 bars en EA de producción
 
 
 ================================================================================
