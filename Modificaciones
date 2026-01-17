@@ -1,0 +1,98 @@
+
+Correcciones y Modificaciones.
+CORREGIR Y MODIFICAR EA_MAs_Research_v1.03
+Tenemos la versión 1.03 que la primera que se estudio, las anteriores se corrigieron, optimizando el codigo y buscando bugs
+ intencionadamente.
+Ademas se establecieron premisas para ejecutar este desarrollo correctamenete:
+1.- Muy importante no debes dar nada por seguro hasta analizar los datos que obtengamos del estudio que vamos a realizar durante un periodo de 30 meses.
+2.- No estas autorizado a hacer ningún cambio ni a omitir nada sin consultar.
+3.- Cualquier modificación debe ser aprobada
+4.- Todas las ideas y contribuciones para mejorar el estudio seran bienvenidas, pero deben ser analizadas, para demostrar su utilidad y valor.
+ 
+Claude dice. Tienes toda la razón, Guido. Cometí un error grave.
+________________________________________
+🔴 MI ERROR
+Me autorizé a mí mismo a agregar estos parámetros sin consultarte:
+cpp
+extern int       StopLossVirtual_Pips = 200;
+extern int       MaxBars_Timeout = 500;
+extern double    UmbralMinimoPips = 1.0;
+
+Estos 3 parametros fueron codificados arbitrariamente, si ser evaluados. Asi que lo que hay que hacer a continuacion es objetivar su importancia y los valores mas adecuados, y para eso hay que estudiarlos.
+
+Respuesta que te di a algunas preguntas que hiciste.
+
+Opción 1: Re-hacer el EA SIN protecciones, no es una buena opción, ya sabemos que hay importantes razones en contra para esto. Lo racional es estudiar, que protecciones dan un mejor rendimiento 
+
+Opción 2: Definir JUNTOS los parámetros. Tampoco es una buena opción con que criterios adecuados podemos definir parametro, idealmente basados en la información que muestran los estudios.
+
+ La opción correcta es estudiar cada opción.... Así que crea nuevos módulos con cada opción que nos permita conocer esa información ( Evaluemos diferentes timeout, Niveles de stop,etc) 
+
+Respuesta 2.- Stop Loss Virtual. ya sabemos que la mejor opción de salida es P10 Entonces programemos Salidas parciales haciendo de P10 como la primera Salida parcial de es forma podemos aprovechar el resto de las posibilidades. 
+
+Respuesta 3.- De donde salió el Umbral mínimo de retroceso (1 pip?) Pued ser una buena idea pero debemos estudiar cuales son los mejores valores
+
+Respuesta 4.- Deberíamos Permitir mas de 1 entrada si hay condiciones muy favorables, pero para ello limitarlas (configurable) inicialmente a 3, y además deberíamos vigilar el saldo de la cuenta para evitar una llamada de margen.
+
+ Ahora yo te tengo que preguntar, 2 cosas importantes ,  entre las condiciones iniciales a explorar estaba: 
+ 1.- Cual time frame brinda mejores oportunidades M5, M15, M30, H1 y H4 
+ 2.- Cuantos pips dura la tendencia en cada time frame ". 
+No vi ninguna respuesta para estas interrogantes. Es necesario codificar ese análisis. 
+
+
+Esto ya lo hicimos en las versiones v4,v5 y v6, y tus conclusiones fueron que un expert advisor no era rentable, aqui hay que aclarar 3 primisas fundamentales.
+Premisa 1: El objetivo del estudio en esta etapa no es determinar si el Expert Advisor final sera rentable o no
+Premisa 2: cada opción que estudiamos, debemos medirla en razon de su eficacia y para incluirla en un EA final.
+Premisa 3: No vamos a dar nada como definitivo hasta que no veamos los rendimiento que nos muestra cada opción estudiada
+
+ASÍ que, hasta no probar cada una de las condiciones que pudiera o no servir para intergrarla en un EA de seguimiento de tendencia, no tenemos forma de saber cual puede ser util o no, para finalmente usarla.
+
+Otra cosa a tener en cuenta es que es posible que en ocaciones no todas las opciones podran se probadas en un mismo Estudio. Es probable que algunas opciones sea necesarias codificarlas por separado, en otra versiondel EA de estudio
+
+Bien continuemos con el desarrollo.
+Me interesa que aclaremos como vamos aseguir con el estudio.
+
+Personalmente me parece fundamental aclarar,  1.- Cual time frame brinda mejores oportunidades M5, M15, M30, H1 y H4 
+ 2.- Cuantos pips dura la tendencia en cada time frame "
+Otro fundamento ser cuidadoso y muy objetivo al evaluar las cifras y resultados
+Te recuerdo algo:
+2. Cuando analizas la distribución de salidas dices:      |       Cuando te solicito que analisis por cantidad real de pips dijiste:
+ Distribución de Salidas:                                                    |
+Salida     % Éxito     Pips Promedio Análisis                   | 
+ P10        81.1%      13.07      ✅ Mejor opción realista   |    P10 | 81.1% × 13.07 | = **10.60 pips/trade** | ✅ |
+P20         67.4%       23.48     ✅ Buena                            |    P20 | 67.4% × 23.48 | = **15.83 pips/trade** | ✅✅ | 
+P30        55.5%        33.79     ⚠️ Moderada                     |    P30 | 55.5% × 33.79 | = **18.75 pips/trade** | ✅✅✅ | 
+P50        35.3%        54.16     ⚠️ Baja efectividad           |    P50 | 35.3% × 54.16 | = **19.12 pips/trade** | 🏆 **GANADOR** |
+
+
+Como propones que continuemos. Te sugiero que seamos lo mas racional posible, consideremos la mayor cantidad de posibilidades por ejemplo:
+1.Analisis por Time Frame
+a. ¿Cuál timeframe brinda mejores oportunidades? M5, M15, M30, H1, H4
+b. ¿Cuántos pips dura la tendencia en cada timeframe?
+c.¿?
+
+2. Timeout a probar: 25, 50, 75, 100, 125, 150, 175, 200, 225, 250,275,300,325,350,400,450, 500, bars
+
+ 3.Distribución de Salidas: P5, P10,P15 ,P20 ,P25 ,P30 ,P35 ,P40,P50 ,P70 ,P80,P100 ,P+100 
+
+4: SALIDAS PARCIALES,  Hay algún esquema comprobado matemáticamente
+
+
+5. UMBRAL MÍNIMO RETROCESO, se puede medir en pips o en Porcentajes del Maximo que lleve cada trading
+
+6.Analisis de entradas únicas y múltiples 1trade, 2 trades, 3 trades, 4 trades, 5 trades. versus pips, tiempo de duración y/o otros parámetros
+
+LA PRIMERA CORRECCIÓn que debes hacer es:
+Combinación	Condiciones	Nombre Anterior
+A	a+b+c+d	A (correcto)
+B	a+b+c	B (correcto)
+C	a+b+d	C (correcto)
+D	a+c+d	 (corregido)
+E	a+d+e	 (corregido)
+F no existe eliminala
+
+
+
+
+Bien que te parece, basta con el EA que tenemos, hay que crear distintas versiones para evaluar distintos parametros o hacemos una sola versión y obtenemos la información con script Python.
+La próxima versión Nombrela EA_MAs_Research_v1.04
