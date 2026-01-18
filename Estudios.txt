@@ -1,119 +1,144 @@
-*******************************************************************************************
-ARCHIVOS SEÑALES ************************************************************************
-================================================================================
-ANÁLISIS DE SEÑALES - EA_MAs_Research_v1.04
+ANÁLISIS COMPLETO - EA_MAs_Research_v1.05
 ================================================================================
 
-Archivos de señales encontrados:
-  ✓ M5: MAs_Señales_EURUSD_M5_2023_06_15.csv
-  ✓ M15: MAs_Señales_EURUSD_M15_2023_06_15.csv
-  ✓ M30: MAs_Señales_EURUSD_M30_2023_06_15.csv
-  ✓ H1: MAs_Señales_EURUSD_H1_2023_06_15.csv
-  ✓ H4: MAs_Señales_EURUSD_H4_2023_06_15.csv
+📁 Archivos encontrados: 5
 
-5 timeframe(s) encontrado(s)
+   - MAs_Resumen_EURUSD_H1_2023_06_15.csv
+   - MAs_Resumen_EURUSD_H4_2023_06_15.csv
+   - MAs_Resumen_EURUSD_M15_2023_06_15.csv
+   - MAs_Resumen_EURUSD_M30_2023_06_15.csv
+   - MAs_Resumen_EURUSD_M5_2023_06_15.csv
 
-Analizando señales de M5...
-  Total señales: 370060
-  BUY: 195591 | SELL: 174469
-
-Analizando señales de M15...
-  Total señales: 128046
-  BUY: 67908 | SELL: 60138
-
-Analizando señales de M30...
-  Total señales: 59948
-  BUY: 31811 | SELL: 28137
-
-Analizando señales de H1...
-  Total señales: 31010
-  BUY: 15997 | SELL: 15013
-
-Analizando señales de H4...
-  Total señales: 7578
-  BUY: 4275 | SELL: 3303
-
-✓ Reporte generado: REPORTE_SENALES.txt
-✓ Gráfico generado: GRAFICO_SENALES.png
-✓ CSV consolidado: SENALES_CONSOLIDADO.csv
+✅ Cargado: MAs_Resumen_EURUSD_H1_2023_06_15.csv
+   Señales: 229 | Columnas: 307
 
 ================================================================================
-RESUMEN RÁPIDO:
+ANÁLISIS: H1
 ================================================================================
-M5: 370060 señales | Tracking: 0.81% | BUY/SELL: 52.85/47.15%
-M15: 128046 señales | Tracking: 0.9% | BUY/SELL: 53.03/46.97%
-M30: 59948 señales | Tracking: 1.02% | BUY/SELL: 53.06/46.94%
-H1: 31010 señales | Tracking: 1.25% | BUY/SELL: 51.59/48.41%
-H4: 7578 señales | Tracking: 1.99% | BUY/SELL: 56.41/43.59%
 
-✅ ANÁLISIS DE SEÑALES COMPLETADO
+📊 Analizando salidas por pips...
+⏱️  Analizando timeouts...
+🔄 Analizando cruces inversos...
+🛑 Analizando stop losses...
+↩️  Analizando retrocesos...
+🔢 Analizando por combinación...
+Combinacion  N_Señales  Pips_Mean  Pips_Median  Pips_Max  Pct_Positivos
+          A         45 150.877778       118.20     662.1      95.555556
+          B         46 150.539130       115.40     662.1      97.826087
+          C         46 150.532609       118.45     474.8      97.826087
+          D         46 152.391304       118.45     662.1      95.652174
+          E         46 155.386957       118.45     662.1      95.652174
 
-*******************************************************************************************
-ARCHIVOS RESUMENES ************************************************************************
-ANÁLISIS COMPLETO - EA_MAs_Research_v1.04
-==========================================================================================
+⚖️  Analizando BUY vs SELL...
+Tipo  N_Señales  Pips_Mean  Pips_Median  Pct_Positivos
+ BUY        111 174.945946        124.6      96.396396
+SELL        118 130.318644        109.2      96.610169
 
-DETECTANDO ARCHIVOS CSV...
-------------------------------------------------------------------------------------------
-✓ M5: MAs_Resumen_EURUSD_M5_2023_06_15.csv
-✓ M15: MAs_Resumen_EURUSD_M15_2023_06_15.csv
-✓ M30: MAs_Resumen_EURUSD_M30_2023_06_15.csv
-✓ H1: MAs_Resumen_EURUSD_H1_2023_06_15.csv
-✓ H4: MAs_Resumen_EURUSD_H4_2023_06_15.csv
+✅ Gráficos guardados: Analisis_Completo_H1.png
+✅ Cargado: MAs_Resumen_EURUSD_H4_2023_06_15.csv
+   Señales: 52 | Columnas: 307
 
-5 timeframe(s) encontrado(s)
+================================================================================
+ANÁLISIS: H4
+================================================================================
 
-==========================================================================================
-ANALIZANDO CADA TIMEFRAME
-==========================================================================================
+📊 Analizando salidas por pips...
+⏱️  Analizando timeouts...
+🔄 Analizando cruces inversos...
+🛑 Analizando stop losses...
+↩️  Analizando retrocesos...
+🔢 Analizando por combinación...
+Combinacion  N_Señales  Pips_Mean  Pips_Median  Pips_Max  Pct_Positivos
+          E         12 310.441667       276.15    1095.4          100.0
+          B         10 372.360000       344.25    1095.4          100.0
+          A         10 358.300000       334.05    1095.4          100.0
+          C         10 358.300000       334.05    1095.4          100.0
+          D         10 358.300000       334.05    1095.4          100.0
 
-Analizando M5...
-✓ M5: 2993 trades cargados
-  ✓ CSV: resultados_M5.csv
-  ✓ Reporte: reporte_M5.txt
-  ✓ Gráfico: grafico_M5.png
+⚖️  Analizando BUY vs SELL...
+Tipo  N_Señales  Pips_Mean  Pips_Median  Pct_Positivos
+ BUY         30 412.180000        351.4          100.0
+SELL         22 265.113636        161.3          100.0
 
-Analizando M15...
-✓ M15: 1150 trades cargados
-  ✓ CSV: resultados_M15.csv
-  ✓ Reporte: reporte_M15.txt
-  ✓ Gráfico: grafico_M15.png
+✅ Gráficos guardados: Analisis_Completo_H4.png
+✅ Cargado: MAs_Resumen_EURUSD_M15_2023_06_15.csv
+   Señales: 985 | Columnas: 307
 
-Analizando M30...
-✓ M30: 601 trades cargados
-  ✓ CSV: resultados_M30.csv
-  ✓ Reporte: reporte_M30.txt
-  ✓ Gráfico: grafico_M30.png
+================================================================================
+ANÁLISIS: M15
+================================================================================
 
-Analizando H1...
-✓ H1: 384 trades cargados
-  ✓ CSV: resultados_H1.csv
-  ✓ Reporte: reporte_H1.txt
-  ✓ Gráfico: grafico_H1.png
+📊 Analizando salidas por pips...
+⏱️  Analizando timeouts...
+🔄 Analizando cruces inversos...
+🛑 Analizando stop losses...
+↩️  Analizando retrocesos...
+🔢 Analizando por combinación...
+Combinacion  N_Señales  Pips_Mean  Pips_Median  Pips_Max  Pct_Positivos
+          B        199  74.609548        60.30     372.4      94.974874
+          A        195  75.836410        60.90     372.4      96.923077
+          C        195  78.478462        61.20     372.4      97.948718
+          D        196  77.627041        61.10     372.4      98.469388
+          E        200  78.427000        63.65     372.4      99.000000
 
-Analizando H4...
-✓ H4: 146 trades cargados
-  ✓ CSV: resultados_H4.csv
-  ✓ Reporte: reporte_H4.txt
-  ✓ Gráfico: grafico_H4.png
+⚖️  Analizando BUY vs SELL...
+Tipo  N_Señales  Pips_Mean  Pips_Median  Pct_Positivos
+ BUY        498  81.853614         63.5      98.393574
+SELL        487  72.024435         60.1      96.509240
 
-==========================================================================================
-GENERANDO COMPARACIÓN FINAL
-==========================================================================================
+✅ Gráficos guardados: Analisis_Completo_M15.png
+✅ Cargado: MAs_Resumen_EURUSD_M30_2023_06_15.csv
+   Señales: 464 | Columnas: 307
 
-✓ CSV comparativo: COMPARACION_TIMEFRAMES.csv
+================================================================================
+ANÁLISIS: M30
+================================================================================
 
-✓ Reporte comparativo: REPORTE_COMPARATIVO_FINAL.txt
-✓ Gráfico comparativo: GRAFICO_COMPARATIVO_FINAL.png
+📊 Analizando salidas por pips...
+⏱️  Analizando timeouts...
+🔄 Analizando cruces inversos...
+🛑 Analizando stop losses...
+↩️  Analizando retrocesos...
+🔢 Analizando por combinación...
+Combinacion  N_Señales  Pips_Mean  Pips_Median  Pips_Max  Pct_Positivos
+          B         91 104.654945         91.7     553.0      97.802198
+          A         91 104.092308         90.8     553.0      97.802198
+          C         93 102.311828         90.8     553.0      95.698925
+          D         93 104.368817        100.0     553.0      96.774194
+          E         96 101.627083         92.5     553.0      94.791667
 
-==========================================================================================
-RESUMEN FINAL
-==========================================================================================
+⚖️  Analizando BUY vs SELL...
+Tipo  N_Señales  Pips_Mean  Pips_Median  Pct_Positivos
+ BUY        238 111.373109        92.95      94.537815
+SELL        226  94.985398        95.35      98.672566
 
-M5: P40 | Score=20.52 | Esperanza=44.06 pips | WR=100.00%
-M15: P90 | Score=37.03 | Esperanza=97.67 pips | WR=100.00%
-M30: P90 | Score=50.88 | Esperanza=97.69 pips | WR=100.00%
-H1: P100 | Score=68.18 | Esperanza=109.09 pips | WR=100.00%
-H4: P100 | Score=88.13 | Esperanza=122.55 pips | WR=100.00%
+✅ Gráficos guardados: Analisis_Completo_M30.png
+✅ Cargado: MAs_Resumen_EURUSD_M5_2023_06_15.csv
+   Señales: 2886 | Columnas: 307
 
+================================================================================
+ANÁLISIS: M5
+================================================================================
+
+📊 Analizando salidas por pips...
+⏱️  Analizando timeouts...
+🔄 Analizando cruces inversos...
+🛑 Analizando stop losses...
+↩️  Analizando retrocesos...
+🔢 Analizando por combinación...
+Combinacion  N_Señales  Pips_Mean  Pips_Median  Pips_Max  Pct_Positivos
+          D        578  43.309170        35.30     379.6      94.290657
+          E        596  43.221980        35.45     379.6      93.959732
+          A        566  43.047527        33.15     379.6      94.169611
+          B        574  42.995645        33.55     379.6      93.902439
+          C        572  43.372727        33.70     379.6      93.881119
+
+⚖️  Analizando BUY vs SELL...
+Tipo  N_Señales  Pips_Mean  Pips_Median  Pct_Positivos
+ BUY       1450  45.615517         37.0      95.172414
+SELL       1436  40.741017         31.9      92.896936
+
+✅ Gráficos guardados: Analisis_Completo_M5.png
+
+================================================================================
 ✅ ANÁLISIS COMPLETO FINALIZADO
