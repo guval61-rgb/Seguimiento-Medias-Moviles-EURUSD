@@ -1,4 +1,4 @@
-Analisis De tendencia Multiples Ma y precio
+Analisis De tendencia con Multiples Ma y precio
 Contecto de Investigación.
 
 Vamos a crear un EA en lenguaje mql4, con sistema de Loggins completo para estudiar una estrategia basada en medias móviles 
@@ -75,4 +75,5 @@ Export CSV Doble
 3.	Backtest en M5, M15, M30, H1, H4 (5 tests separados)
 4.	Periodo de prueba : 30 meses hacia atrás desde 10/Junio/2023 al 10/Dic/2025
 5.	Analizar CSVs con Python
+
 
