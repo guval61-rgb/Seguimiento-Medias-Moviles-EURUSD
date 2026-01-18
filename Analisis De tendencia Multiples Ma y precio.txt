@@ -1,0 +1,78 @@
+Analisis De tendencia Multiples Ma y precio
+Contecto de Investigación.
+
+Vamos a crear un EA en lenguaje mql4, con sistema de Loggins completo para estudiar una estrategia basada en medias móviles 
+Vamos a comenzar estudiando el Par EURUSD. 
+Vamos a configurar 7 medias móviles. 6 de ellas van a formar parte de la señal en pares.
+
+ Para señal de Compra 
+a) LWMa 200 Magenta Close > LWMa 220 Maroon Open 
+b) LWMa 100 Yelow Close > LWMa 105 DarkOrange Open 
+c) LWMa 50 Lime Close >LWMa 53 Orange Open 
+d) LWMa 20 Blue Close >LWMa 22 Aqua Open 
+e) Precio abre Sobre Ma Simple 5 White Close 
+
+Para Ventas usamos las condiciones Inversas
+
+ Que combinaciones resultan en mejor entrada. 
+A) a+b+c+d 
+B) a+b+c 
+C) a+b+d 
+E) a+c+d 
+F) a+d+e 
+G) Otras??? 
+
+Vamos a explorar 
+1.- Cual time frame brinda mejores oportunidades M5, M15, M30, H1 y H4 
+2.- Cuantos pips dura la tendencia en cada time frame 
+3.- Cual es la mejor salida, en cada time frame Salidas 
+      1.- Pips 5,10, 15, 20, 25, 30, 50, 60, 75, 80, 85, 100 o más. 
+      2.- Pips Máximo, salida en retroceso - 20%. -25%, 30%,35%, 40%, 45% y 50% 
+      3.- Cruce de Medias Móviles con señal contraria d) LWMa 20 Blue Close < LWMa 22 Aqua Open 
+      4.- Cruce de Medias Móviles con señal contraria c) LWMa 50 Lime Close < LWMa 53 Orange Open 
+      5.- Cruce de Medias Móviles con señal contraria b) LWMa 100 Yelow Close > LWMa 105 DarkOrange Open 
+
+
+
+A) ¿Cómo manejar las señales?    -  Tracking virtual de cada señal con TODAS las salidas simultáneamente
+
+B) Reentradas   -  Registrar todas las señales, pero no permitir overlapping (una a la vez por combinación)
+                                             - 1 reentrada extra si hay condiciones óptimas
+C) Señales BUY y SELL    - Tratar independientemente BUY y SELL
+
+D) Timeframe de operación?   Parámetro configurable, pero el EA corre en UN timeframe a la vez
+                             		 Para estudiar M5, M15, M30, H1, H4 → Correr 5 backtests separados
+
+E) ESTRATEGIAS DE SALIDA ( salidas virtuales simultáneas)
+
+GRUPO 1 - Pips Fijos  
+                   - 5, 10, 15, 20, 25, 30, 35, 50, 55, 60, 65, 70, 75, 80, 85, 90,100, +100 pips
+
+GRUPO 2 - Retroceso desde máximo (7 salidas):
+                   - Retroceso 20%, 25%, 30%, 35%, 40%, 45%, 50%
+
+GRUPO 3 - Cruces inversos (5 salidas):
+                   - Cruce_a Inverso)  LWMa 200 close  < / >  LWMa 220 Maroon open   
+                   - Cruce_b Inverso)  LWMa 100 close  < / >  LWMa 105 DarkOrange open 
+                   - Cruce_c Inverso)  LWMa  50   close  < / >  LWMa 53 Orange open 
+                   - Cruce_d Inverso)  LWMa 20    close  < / >  LWMa 22 Aqua open 
+                   - Cruce_e Inverso)  Precio abre  Sobre / Bajo  Ma Simple 5 close
+
+Testear Stop Loss de proteccion  5, 10, 20, 30, 40, 50, 60, 70, 80,  90, 100, 120, 130,140,150, 160,170,180,190, 200
+
+ EA debe Simular trades virtuales para medir cada salida
+ El EA debe operar en modo "detector" (registrar señales) y también simular trades virtuales?
+ Si hay señal BUY y SELL simultáneamente: Trackear ambas independientemente
+ EA debe registrar TODAS las señales que ocurren y aparte solo las que generan entrada (CSV de señales detectadas y otro de trades tracked?)
+Para el cálculo de pips,  Autodetectar dígitos del broker 
+ Todos los trades se cierran en el Time frame que se esta probando, cuando aparece una señal contraria, así, no existe la posibilidad que un trade quede eternamente abierto generando perdidas
+
+Export CSV Doble
+1.	Señales_Detectadas.csv: Todas las señales + MAs
+2.	Trades_Ejecutados.csv: Cada salida con timestamp, pips, duración
+
+
+3.	Backtest en M5, M15, M30, H1, H4 (5 tests separados)
+4.	Periodo de prueba : 30 meses hacia atrás desde 10/Junio/2023 al 10/Dic/2025
+5.	Analizar CSVs con Python
+
