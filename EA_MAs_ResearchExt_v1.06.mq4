@@ -1,10 +1,10 @@
 //+------------------------------------------------------------------+
-//|                                   EA_MAs_Research_v105_FINAL.mq4 |
+//|                                     EA_MAs_ResearchExt_v1.06.mq4 |
 //|                                   Expert Advisor de Investigación|
 //|                          Sistema de Medias Móviles Multi-Salida  |
 //+------------------------------------------------------------------+
 #property copyright "Guido - Investigación MAs"
-#property version   "1.05"
+#property version   "1.06"
 #property strict
 
 //+------------------------------------------------------------------+
@@ -20,6 +20,14 @@ extern bool      Eval_Combinacion_B = true;  // a+b+c
 extern bool      Eval_Combinacion_C = true;  // a+b+d
 extern bool      Eval_Combinacion_D = true;  // a+c+d
 extern bool      Eval_Combinacion_E = true;  // a+d+e
+extern bool      Eval_Combinacion_F = true;  // a+b+c+d+e
+extern bool      Eval_Combinacion_G = true;  // b+c+d
+extern bool      Eval_Combinacion_H = true;  // a+c+e
+extern bool      Eval_Combinacion_I = true;  // a+b
+extern bool      Eval_Combinacion_J = true;  // d+e
+extern bool      Eval_Combinacion_K = true;  // c+d+e
+extern bool      Eval_Combinacion_L = true;  // b+c+d+e
+extern bool      Eval_Combinacion_M = true;  // b+d+e
 
 extern string    S3 = "===== SALIDAS PIPS FIJOS =====";
 extern bool      Salida_Pips_5 = true;
@@ -51,12 +59,25 @@ extern bool      Salida_Retroceso_40 = true;
 extern bool      Salida_Retroceso_45 = true;
 extern bool      Salida_Retroceso_50 = true;
 
-extern string    S5 = "===== SALIDAS CRUCES INVERSOS (5 salidas) =====";
+extern string    S5 = "===== SALIDAS CRUCES INVERSOS (18 salidas) =====";
 extern bool      Salida_Cruce_a = true;  // LWMA200 vs LWMA220
 extern bool      Salida_Cruce_b = true;  // LWMA100 vs LWMA105
 extern bool      Salida_Cruce_c = true;  // LWMA50 vs LWMA53
 extern bool      Salida_Cruce_d = true;  // LWMA20 vs LWMA22
 extern bool      Salida_Cruce_e = true;  // Precio vs SMA5
+extern bool      Salida_Cruce_f = true;  // SMA5 vs LWMA20
+extern bool      Salida_Cruce_g = true;  // SMA5 vs LWMA50
+extern bool      Salida_Cruce_h = true;  // SMA5 vs LWMA100
+extern bool      Salida_Cruce_i = true;  // SMA5 vs LWMA200
+extern bool      Salida_Cruce_j = true;  // LWMA20 vs LWMA50
+extern bool      Salida_Cruce_k = true;  // LWMA20 vs LWMA100
+extern bool      Salida_Cruce_l = true;  // LWMA20 vs LWMA200
+extern bool      Salida_Combo_1 = true;  // Cruce_a AND Cruce_d
+extern bool      Salida_Combo_2 = true;  // Cruce_b AND Cruce_d
+extern bool      Salida_Combo_3 = true;  // Cruce_c AND Cruce_d
+extern bool      Salida_Combo_4 = true;  // Cruce_a AND Cruce_h
+extern bool      Salida_Combo_5 = true;  // Cruce_b AND Cruce_g
+extern bool      Salida_Combo_6 = true;  // Cruce_c AND Cruce_f
 
 extern string    S6 = "===== CONFIGURACIÓN =====";
 extern double    UmbralMinimoPips = 1.0;
@@ -110,7 +131,7 @@ struct InfoSalida {
 };
 
 //+------------------------------------------------------------------+
-//| ESTRUCTURA DE DATOS PARA TRACKING VIRTUAL - v1.04                 |
+//| ESTRUCTURA DE DATOS PARA TRACKING VIRTUAL - v1.06                 |
 //+------------------------------------------------------------------+
 struct TradeVirtual {
     int       id;
@@ -156,12 +177,29 @@ struct TradeVirtual {
     InfoSalida salida_retroceso_45_info;
     InfoSalida salida_retroceso_50_info;
     
-    // Salidas Cruces - 5 salidas
+    // Salidas Cruces Originales - 5 salidas
     InfoSalida salida_cruce_a_info;
     InfoSalida salida_cruce_b_info;
     InfoSalida salida_cruce_c_info;
     InfoSalida salida_cruce_d_info;
     InfoSalida salida_cruce_e_info;
+    
+    // Salidas Cruces Nuevos - 7 salidas (v1.06)
+    InfoSalida salida_cruce_f_info;
+    InfoSalida salida_cruce_g_info;
+    InfoSalida salida_cruce_h_info;
+    InfoSalida salida_cruce_i_info;
+    InfoSalida salida_cruce_j_info;
+    InfoSalida salida_cruce_k_info;
+    InfoSalida salida_cruce_l_info;
+    
+    // Salidas Combos - 6 salidas (v1.06)
+    InfoSalida salida_combo_1_info;
+    InfoSalida salida_combo_2_info;
+    InfoSalida salida_combo_3_info;
+    InfoSalida salida_combo_4_info;
+    InfoSalida salida_combo_5_info;
+    InfoSalida salida_combo_6_info;
     
     // Salidas Timeouts - 17 salidas
     InfoSalida salida_timeout_25_info;
@@ -221,8 +259,17 @@ struct TradeVirtual {
 };
 
 // Arrays de tracking virtual - 5 combinaciones
+//TradeVirtual TrackingBUY_A, TrackingBUY_B, TrackingBUY_C, TrackingBUY_D, TrackingBUY_E;
+//TradeVirtual TrackingSELL_A, TrackingSELL_B, TrackingSELL_C, TrackingSELL_D, TrackingSELL_E;
+//--------------------------------------------------------------------------------------------
+// Arrays de tracking virtual - 13 combinaciones
 TradeVirtual TrackingBUY_A, TrackingBUY_B, TrackingBUY_C, TrackingBUY_D, TrackingBUY_E;
+TradeVirtual TrackingBUY_F, TrackingBUY_G, TrackingBUY_H, TrackingBUY_I, TrackingBUY_J;
+TradeVirtual TrackingBUY_K, TrackingBUY_L, TrackingBUY_M;
+
 TradeVirtual TrackingSELL_A, TrackingSELL_B, TrackingSELL_C, TrackingSELL_D, TrackingSELL_E;
+TradeVirtual TrackingSELL_F, TrackingSELL_G, TrackingSELL_H, TrackingSELL_I, TrackingSELL_J;
+TradeVirtual TrackingSELL_K, TrackingSELL_L, TrackingSELL_M;
 
 //+------------------------------------------------------------------+
 //| Expert initialization function                                     |
@@ -272,13 +319,15 @@ int OnInit() {
     Print("SALIDAS CONFIGURADAS:");
     Print("- Pips fijos: 19 salidas");
     Print("- Retrocesos: 7 salidas");
-    Print("- Cruces: 5 salidas");
+    Print("- Cruces originales: 5 salidas");
+    Print("- Cruces nuevos: 7 salidas (v1.06)");
+    Print("- Combos: 6 salidas (v1.06)");
     Print("- Timeouts: 17 salidas");
     Print("- StopLoss: 20 salidas");
     Print("- Señal contraria: 1 salida");
-    Print("TOTAL: 69 salidas virtuales simultáneas");
+    Print("TOTAL: 82 salidas virtuales simultáneas");
     Print("==================================================");
-    Print("EA_MAs_Research_v1.05 - INICIALIZADO CORRECTAMENTE");
+    Print("EA_MAs_ResearchExt_v1.06 - INICIALIZADO CORRECTAMENTE");
     return(INIT_SUCCEEDED);
 }
 
@@ -321,10 +370,16 @@ void OnTick() {
     
     MAsCacheValido = false;
     
-    bool hayTrackingActivo = (TrackingBUY_A.activo || TrackingBUY_B.activo || TrackingBUY_C.activo || 
-                              TrackingBUY_D.activo || TrackingBUY_E.activo ||
+bool hayTrackingActivo = (TrackingBUY_A.activo || TrackingBUY_B.activo || TrackingBUY_C.activo || 
+                              TrackingBUY_D.activo || TrackingBUY_E.activo || TrackingBUY_F.activo ||
+                              TrackingBUY_G.activo || TrackingBUY_H.activo || TrackingBUY_I.activo ||
+                              TrackingBUY_J.activo || TrackingBUY_K.activo || TrackingBUY_L.activo ||
+                              TrackingBUY_M.activo ||
                               TrackingSELL_A.activo || TrackingSELL_B.activo || TrackingSELL_C.activo || 
-                              TrackingSELL_D.activo || TrackingSELL_E.activo);
+                              TrackingSELL_D.activo || TrackingSELL_E.activo || TrackingSELL_F.activo ||
+                              TrackingSELL_G.activo || TrackingSELL_H.activo || TrackingSELL_I.activo ||
+                              TrackingSELL_J.activo || TrackingSELL_K.activo || TrackingSELL_L.activo ||
+                              TrackingSELL_M.activo);
     
     MediasMoviles mas;
     if(!ObtenerMAsConCache(mas)) {
@@ -375,7 +430,7 @@ void EvaluarTodasLasSeñales(MediasMoviles &mas) {
     bool cond_d_sell = EvaluarCondicion_d_Inversa(mas);
     bool cond_e_sell = EvaluarCondicion_e_Inversa(mas);
     
-    // BUY
+    // BUY - Combinaciones A-E (originales)
     if(Eval_Combinacion_A) {
         bool señal_buy_A = cond_a && cond_b && cond_c && cond_d;
         ProcesarSeñal(señal_buy_A, "BUY", "A", mas, TrackingBUY_A, 
@@ -406,7 +461,56 @@ void EvaluarTodasLasSeñales(MediasMoviles &mas) {
                      cond_a, cond_b, cond_c, cond_d, cond_e);
     }
     
-    // SELL
+    // BUY - Combinaciones F-M (v1.06)
+    if(Eval_Combinacion_F) {
+        bool señal_buy_F = cond_a && cond_b && cond_c && cond_d && cond_e;
+        ProcesarSeñal(señal_buy_F, "BUY", "F", mas, TrackingBUY_F,
+                     cond_a, cond_b, cond_c, cond_d, cond_e);
+    }
+    
+    if(Eval_Combinacion_G) {
+        bool señal_buy_G = cond_b && cond_c && cond_d;
+        ProcesarSeñal(señal_buy_G, "BUY", "G", mas, TrackingBUY_G,
+                     cond_a, cond_b, cond_c, cond_d, cond_e);
+    }
+    
+    if(Eval_Combinacion_H) {
+        bool señal_buy_H = cond_a && cond_c && cond_e;
+        ProcesarSeñal(señal_buy_H, "BUY", "H", mas, TrackingBUY_H,
+                     cond_a, cond_b, cond_c, cond_d, cond_e);
+    }
+    
+    if(Eval_Combinacion_I) {
+        bool señal_buy_I = cond_a && cond_b;
+        ProcesarSeñal(señal_buy_I, "BUY", "I", mas, TrackingBUY_I,
+                     cond_a, cond_b, cond_c, cond_d, cond_e);
+    }
+    
+    if(Eval_Combinacion_J) {
+        bool señal_buy_J = cond_d && cond_e;
+        ProcesarSeñal(señal_buy_J, "BUY", "J", mas, TrackingBUY_J,
+                     cond_a, cond_b, cond_c, cond_d, cond_e);
+    }
+    
+    if(Eval_Combinacion_K) {
+        bool señal_buy_K = cond_c && cond_d && cond_e;
+        ProcesarSeñal(señal_buy_K, "BUY", "K", mas, TrackingBUY_K,
+                     cond_a, cond_b, cond_c, cond_d, cond_e);
+    }
+    
+    if(Eval_Combinacion_L) {
+        bool señal_buy_L = cond_b && cond_c && cond_d && cond_e;
+        ProcesarSeñal(señal_buy_L, "BUY", "L", mas, TrackingBUY_L,
+                     cond_a, cond_b, cond_c, cond_d, cond_e);
+    }
+    
+    if(Eval_Combinacion_M) {
+        bool señal_buy_M = cond_b && cond_d && cond_e;
+        ProcesarSeñal(señal_buy_M, "BUY", "M", mas, TrackingBUY_M,
+                     cond_a, cond_b, cond_c, cond_d, cond_e);
+    }
+    
+    // SELL - Combinaciones A-E (originales)
     if(Eval_Combinacion_A) {
         bool señal_sell_A = cond_a_sell && cond_b_sell && cond_c_sell && cond_d_sell;
         ProcesarSeñal(señal_sell_A, "SELL", "A", mas, TrackingSELL_A,
@@ -436,7 +540,57 @@ void EvaluarTodasLasSeñales(MediasMoviles &mas) {
         ProcesarSeñal(señal_sell_E, "SELL", "E", mas, TrackingSELL_E,
                      cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
     }
+    
+    // SELL - Combinaciones F-M (v1.06)
+    if(Eval_Combinacion_F) {
+        bool señal_sell_F = cond_a_sell && cond_b_sell && cond_c_sell && cond_d_sell && cond_e_sell;
+        ProcesarSeñal(señal_sell_F, "SELL", "F", mas, TrackingSELL_F,
+                     cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
+    }
+    
+    if(Eval_Combinacion_G) {
+        bool señal_sell_G = cond_b_sell && cond_c_sell && cond_d_sell;
+        ProcesarSeñal(señal_sell_G, "SELL", "G", mas, TrackingSELL_G,
+                     cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
+    }
+    
+    if(Eval_Combinacion_H) {
+        bool señal_sell_H = cond_a_sell && cond_c_sell && cond_e_sell;
+        ProcesarSeñal(señal_sell_H, "SELL", "H", mas, TrackingSELL_H,
+                     cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
+    }
+    
+    if(Eval_Combinacion_I) {
+        bool señal_sell_I = cond_a_sell && cond_b_sell;
+        ProcesarSeñal(señal_sell_I, "SELL", "I", mas, TrackingSELL_I,
+                     cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
+    }
+    
+    if(Eval_Combinacion_J) {
+        bool señal_sell_J = cond_d_sell && cond_e_sell;
+        ProcesarSeñal(señal_sell_J, "SELL", "J", mas, TrackingSELL_J,
+                     cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
+    }
+    
+    if(Eval_Combinacion_K) {
+        bool señal_sell_K = cond_c_sell && cond_d_sell && cond_e_sell;
+        ProcesarSeñal(señal_sell_K, "SELL", "K", mas, TrackingSELL_K,
+                     cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
+    }
+    
+    if(Eval_Combinacion_L) {
+        bool señal_sell_L = cond_b_sell && cond_c_sell && cond_d_sell && cond_e_sell;
+        ProcesarSeñal(señal_sell_L, "SELL", "L", mas, TrackingSELL_L,
+                     cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
+    }
+    
+    if(Eval_Combinacion_M) {
+        bool señal_sell_M = cond_b_sell && cond_d_sell && cond_e_sell;
+        ProcesarSeñal(señal_sell_M, "SELL", "M", mas, TrackingSELL_M,
+                     cond_a_sell, cond_b_sell, cond_c_sell, cond_d_sell, cond_e_sell);
+    }
 }
+
 
 //+------------------------------------------------------------------+
 //| OPTIMIZACIÓN: Actualizar todos los trackings en bloque            |
@@ -447,14 +601,29 @@ void ActualizarTodosLosTrackings(MediasMoviles &mas) {
     if(TrackingBUY_C.activo) ActualizarTrackingVirtual(TrackingBUY_C, mas);
     if(TrackingBUY_D.activo) ActualizarTrackingVirtual(TrackingBUY_D, mas);
     if(TrackingBUY_E.activo) ActualizarTrackingVirtual(TrackingBUY_E, mas);
+    if(TrackingBUY_F.activo) ActualizarTrackingVirtual(TrackingBUY_F, mas);
+    if(TrackingBUY_G.activo) ActualizarTrackingVirtual(TrackingBUY_G, mas);
+    if(TrackingBUY_H.activo) ActualizarTrackingVirtual(TrackingBUY_H, mas);
+    if(TrackingBUY_I.activo) ActualizarTrackingVirtual(TrackingBUY_I, mas);
+    if(TrackingBUY_J.activo) ActualizarTrackingVirtual(TrackingBUY_J, mas);
+    if(TrackingBUY_K.activo) ActualizarTrackingVirtual(TrackingBUY_K, mas);
+    if(TrackingBUY_L.activo) ActualizarTrackingVirtual(TrackingBUY_L, mas);
+    if(TrackingBUY_M.activo) ActualizarTrackingVirtual(TrackingBUY_M, mas);
     
     if(TrackingSELL_A.activo) ActualizarTrackingVirtual(TrackingSELL_A, mas);
     if(TrackingSELL_B.activo) ActualizarTrackingVirtual(TrackingSELL_B, mas);
     if(TrackingSELL_C.activo) ActualizarTrackingVirtual(TrackingSELL_C, mas);
     if(TrackingSELL_D.activo) ActualizarTrackingVirtual(TrackingSELL_D, mas);
     if(TrackingSELL_E.activo) ActualizarTrackingVirtual(TrackingSELL_E, mas);
+    if(TrackingSELL_F.activo) ActualizarTrackingVirtual(TrackingSELL_F, mas);
+    if(TrackingSELL_G.activo) ActualizarTrackingVirtual(TrackingSELL_G, mas);
+    if(TrackingSELL_H.activo) ActualizarTrackingVirtual(TrackingSELL_H, mas);
+    if(TrackingSELL_I.activo) ActualizarTrackingVirtual(TrackingSELL_I, mas);
+    if(TrackingSELL_J.activo) ActualizarTrackingVirtual(TrackingSELL_J, mas);
+    if(TrackingSELL_K.activo) ActualizarTrackingVirtual(TrackingSELL_K, mas);
+    if(TrackingSELL_L.activo) ActualizarTrackingVirtual(TrackingSELL_L, mas);
+    if(TrackingSELL_M.activo) ActualizarTrackingVirtual(TrackingSELL_M, mas);
 }
-
 //+------------------------------------------------------------------+
 //| Calcular valor de 1 pip del símbolo actual                        |
 //+------------------------------------------------------------------+
@@ -636,7 +805,22 @@ void IniciarTrackingVirtual(TradeVirtual &tracking, string tipo,
     InicializarSalida(tracking.salida_cruce_c_info);
     InicializarSalida(tracking.salida_cruce_d_info);
     InicializarSalida(tracking.salida_cruce_e_info);
+    // Inicializar salidas cruces nuevos (v1.06)
+    InicializarSalida(tracking.salida_cruce_f_info);
+    InicializarSalida(tracking.salida_cruce_g_info);
+    InicializarSalida(tracking.salida_cruce_h_info);
+    InicializarSalida(tracking.salida_cruce_i_info);
+    InicializarSalida(tracking.salida_cruce_j_info);
+    InicializarSalida(tracking.salida_cruce_k_info);
+    InicializarSalida(tracking.salida_cruce_l_info);
     
+    // Inicializar salidas combos (v1.06)
+    InicializarSalida(tracking.salida_combo_1_info);
+    InicializarSalida(tracking.salida_combo_2_info);
+    InicializarSalida(tracking.salida_combo_3_info);
+    InicializarSalida(tracking.salida_combo_4_info);
+    InicializarSalida(tracking.salida_combo_5_info);
+    InicializarSalida(tracking.salida_combo_6_info);
     // Inicializar salidas timeout
     InicializarSalida(tracking.salida_timeout_25_info);
     InicializarSalida(tracking.salida_timeout_50_info);
@@ -872,6 +1056,8 @@ void EvaluarSalidasRetroceso(TradeVirtual &tracking) {
 //| Evaluar salidas por cruces - 5 salidas                            |
 //+------------------------------------------------------------------+
 void EvaluarSalidasCruces(TradeVirtual &tracking, MediasMoviles &mas) {
+    // ===== CRUCES ORIGINALES (5) =====
+    
     // Cruce_a: LWMA200 vs LWMA220
     if(Salida_Cruce_a && !tracking.salida_cruce_a_info.cerrada) {
         bool cruce_inverso = false;
@@ -928,32 +1114,6 @@ void EvaluarSalidasCruces(TradeVirtual &tracking, MediasMoviles &mas) {
         }
     }
     
-    if(Salida_Cruce_c && !tracking.salida_cruce_c_info.cerrada) {
-        bool cruce_inverso = false;
-        if(tracking.tipo == "BUY") {
-            cruce_inverso = (mas.ma50_close < mas.ma53_open);
-        } else {
-            cruce_inverso = (mas.ma50_close > mas.ma53_open);
-        }
-        
-        if(cruce_inverso) {
-            RegistrarSalidaEnStruct(tracking.salida_cruce_c_info, tracking);
-        }
-    }
-    
-    if(Salida_Cruce_b && !tracking.salida_cruce_b_info.cerrada) {
-        bool cruce_inverso = false;
-        if(tracking.tipo == "BUY") {
-            cruce_inverso = (mas.ma100_close < mas.ma105_open);
-        } else {
-            cruce_inverso = (mas.ma100_close > mas.ma105_open);
-        }
-        
-        if(cruce_inverso) {
-            RegistrarSalidaEnStruct(tracking.salida_cruce_b_info, tracking);
-        }
-    }
-    
     // Cruce_e: Precio vs SMA5
     if(Salida_Cruce_e && !tracking.salida_cruce_e_info.cerrada) {
         bool cruce_inverso = false;
@@ -965,6 +1125,216 @@ void EvaluarSalidasCruces(TradeVirtual &tracking, MediasMoviles &mas) {
         
         if(cruce_inverso) {
             RegistrarSalidaEnStruct(tracking.salida_cruce_e_info, tracking);
+        }
+    }
+    
+    // ===== CRUCES NUEVOS (7) - v1.06 =====
+    
+    // Cruce_f: SMA5 vs LWMA20
+    if(Salida_Cruce_f && !tracking.salida_cruce_f_info.cerrada) {
+        bool cruce_inverso = false;
+        if(tracking.tipo == "BUY") {
+            cruce_inverso = (mas.ma5_close < mas.ma20_close);
+        } else {
+            cruce_inverso = (mas.ma5_close > mas.ma20_close);
+        }
+        
+        if(cruce_inverso) {
+            RegistrarSalidaEnStruct(tracking.salida_cruce_f_info, tracking);
+        }
+    }
+    
+    // Cruce_g: SMA5 vs LWMA50
+    if(Salida_Cruce_g && !tracking.salida_cruce_g_info.cerrada) {
+        bool cruce_inverso = false;
+        if(tracking.tipo == "BUY") {
+            cruce_inverso = (mas.ma5_close < mas.ma50_close);
+        } else {
+            cruce_inverso = (mas.ma5_close > mas.ma50_close);
+        }
+        
+        if(cruce_inverso) {
+            RegistrarSalidaEnStruct(tracking.salida_cruce_g_info, tracking);
+        }
+    }
+    
+    // Cruce_h: SMA5 vs LWMA100
+    if(Salida_Cruce_h && !tracking.salida_cruce_h_info.cerrada) {
+        bool cruce_inverso = false;
+        if(tracking.tipo == "BUY") {
+            cruce_inverso = (mas.ma5_close < mas.ma100_close);
+        } else {
+            cruce_inverso = (mas.ma5_close > mas.ma100_close);
+        }
+        
+        if(cruce_inverso) {
+            RegistrarSalidaEnStruct(tracking.salida_cruce_h_info, tracking);
+        }
+    }
+    
+    // Cruce_i: SMA5 vs LWMA200
+    if(Salida_Cruce_i && !tracking.salida_cruce_i_info.cerrada) {
+        bool cruce_inverso = false;
+        if(tracking.tipo == "BUY") {
+            cruce_inverso = (mas.ma5_close < mas.ma200_close);
+        } else {
+            cruce_inverso = (mas.ma5_close > mas.ma200_close);
+        }
+        
+        if(cruce_inverso) {
+            RegistrarSalidaEnStruct(tracking.salida_cruce_i_info, tracking);
+        }
+    }
+    
+    // Cruce_j: LWMA20 vs LWMA50
+    if(Salida_Cruce_j && !tracking.salida_cruce_j_info.cerrada) {
+        bool cruce_inverso = false;
+        if(tracking.tipo == "BUY") {
+            cruce_inverso = (mas.ma20_close < mas.ma50_close);
+        } else {
+            cruce_inverso = (mas.ma20_close > mas.ma50_close);
+        }
+        
+        if(cruce_inverso) {
+            RegistrarSalidaEnStruct(tracking.salida_cruce_j_info, tracking);
+        }
+    }
+    
+    // Cruce_k: LWMA20 vs LWMA100
+    if(Salida_Cruce_k && !tracking.salida_cruce_k_info.cerrada) {
+        bool cruce_inverso = false;
+        if(tracking.tipo == "BUY") {
+            cruce_inverso = (mas.ma20_close < mas.ma100_close);
+        } else {
+            cruce_inverso = (mas.ma20_close > mas.ma100_close);
+        }
+        
+        if(cruce_inverso) {
+            RegistrarSalidaEnStruct(tracking.salida_cruce_k_info, tracking);
+        }
+    }
+    
+    // Cruce_l: LWMA20 vs LWMA200
+    if(Salida_Cruce_l && !tracking.salida_cruce_l_info.cerrada) {
+        bool cruce_inverso = false;
+        if(tracking.tipo == "BUY") {
+            cruce_inverso = (mas.ma20_close < mas.ma200_close);
+        } else {
+            cruce_inverso = (mas.ma20_close > mas.ma200_close);
+        }
+        
+        if(cruce_inverso) {
+            RegistrarSalidaEnStruct(tracking.salida_cruce_l_info, tracking);
+        }
+    }
+    
+    // ===== COMBOS (6) - v1.06 =====
+    
+    // Combo_1: Cruce_a AND Cruce_d (LWMA200×220 AND LWMA20×22)
+    if(Salida_Combo_1 && !tracking.salida_combo_1_info.cerrada) {
+        bool cruce_a_activo = false;
+        bool cruce_d_activo = false;
+        
+        if(tracking.tipo == "BUY") {
+            cruce_a_activo = (mas.ma200_close < mas.ma220_open);
+            cruce_d_activo = (mas.ma20_close < mas.ma22_open);
+        } else {
+            cruce_a_activo = (mas.ma200_close > mas.ma220_open);
+            cruce_d_activo = (mas.ma20_close > mas.ma22_open);
+        }
+        
+        if(cruce_a_activo && cruce_d_activo) {
+            RegistrarSalidaEnStruct(tracking.salida_combo_1_info, tracking);
+        }
+    }
+    
+    // Combo_2: Cruce_b AND Cruce_d (LWMA100×105 AND LWMA20×22)
+    if(Salida_Combo_2 && !tracking.salida_combo_2_info.cerrada) {
+        bool cruce_b_activo = false;
+        bool cruce_d_activo = false;
+        
+        if(tracking.tipo == "BUY") {
+            cruce_b_activo = (mas.ma100_close < mas.ma105_open);
+            cruce_d_activo = (mas.ma20_close < mas.ma22_open);
+        } else {
+            cruce_b_activo = (mas.ma100_close > mas.ma105_open);
+            cruce_d_activo = (mas.ma20_close > mas.ma22_open);
+        }
+        
+        if(cruce_b_activo && cruce_d_activo) {
+            RegistrarSalidaEnStruct(tracking.salida_combo_2_info, tracking);
+        }
+    }
+    
+    // Combo_3: Cruce_c AND Cruce_d (LWMA50×53 AND LWMA20×22)
+    if(Salida_Combo_3 && !tracking.salida_combo_3_info.cerrada) {
+        bool cruce_c_activo = false;
+        bool cruce_d_activo = false;
+        
+        if(tracking.tipo == "BUY") {
+            cruce_c_activo = (mas.ma50_close < mas.ma53_open);
+            cruce_d_activo = (mas.ma20_close < mas.ma22_open);
+        } else {
+            cruce_c_activo = (mas.ma50_close > mas.ma53_open);
+            cruce_d_activo = (mas.ma20_close > mas.ma22_open);
+        }
+        
+        if(cruce_c_activo && cruce_d_activo) {
+            RegistrarSalidaEnStruct(tracking.salida_combo_3_info, tracking);
+        }
+    }
+    
+    // Combo_4: Cruce_a AND Cruce_h (LWMA200×220 AND SMA5×LWMA100)
+    if(Salida_Combo_4 && !tracking.salida_combo_4_info.cerrada) {
+        bool cruce_a_activo = false;
+        bool cruce_h_activo = false;
+        
+        if(tracking.tipo == "BUY") {
+            cruce_a_activo = (mas.ma200_close < mas.ma220_open);
+            cruce_h_activo = (mas.ma5_close < mas.ma100_close);
+        } else {
+            cruce_a_activo = (mas.ma200_close > mas.ma220_open);
+            cruce_h_activo = (mas.ma5_close > mas.ma100_close);
+        }
+        
+        if(cruce_a_activo && cruce_h_activo) {
+            RegistrarSalidaEnStruct(tracking.salida_combo_4_info, tracking);
+        }
+    }
+    
+    // Combo_5: Cruce_b AND Cruce_g (LWMA100×105 AND SMA5×LWMA50)
+    if(Salida_Combo_5 && !tracking.salida_combo_5_info.cerrada) {
+        bool cruce_b_activo = false;
+        bool cruce_g_activo = false;
+        
+        if(tracking.tipo == "BUY") {
+            cruce_b_activo = (mas.ma100_close < mas.ma105_open);
+            cruce_g_activo = (mas.ma5_close < mas.ma50_close);
+        } else {
+            cruce_b_activo = (mas.ma100_close > mas.ma105_open);
+            cruce_g_activo = (mas.ma5_close > mas.ma50_close);
+        }
+        
+        if(cruce_b_activo && cruce_g_activo) {
+            RegistrarSalidaEnStruct(tracking.salida_combo_5_info, tracking);
+        }
+    }
+    
+    // Combo_6: Cruce_c AND Cruce_f (LWMA50×53 AND SMA5×LWMA20)
+    if(Salida_Combo_6 && !tracking.salida_combo_6_info.cerrada) {
+        bool cruce_c_activo = false;
+        bool cruce_f_activo = false;
+        
+        if(tracking.tipo == "BUY") {
+            cruce_c_activo = (mas.ma50_close < mas.ma53_open);
+            cruce_f_activo = (mas.ma5_close < mas.ma20_close);
+        } else {
+            cruce_c_activo = (mas.ma50_close > mas.ma53_open);
+            cruce_f_activo = (mas.ma5_close > mas.ma20_close);
+        }
+        
+        if(cruce_c_activo && cruce_f_activo) {
+            RegistrarSalidaEnStruct(tracking.salida_combo_6_info, tracking);
         }
     }
 }
@@ -1135,7 +1505,7 @@ void EvaluarSalidaSeñalContraria(TradeVirtual &tracking, MediasMoviles &mas) {
     
     bool señal_contraria = false;
     
-    // Detectar si aparece señal contraria según la combinación del trade
+    // Detectar señal contraria según combinación
     if(tracking.combinacion == "A") {
         // A = a+b+c+d
         if(tracking.tipo == "BUY") {
@@ -1206,6 +1576,120 @@ void EvaluarSalidaSeñalContraria(TradeVirtual &tracking, MediasMoviles &mas) {
             bool cond_d_buy = EvaluarCondicion_d(mas);
             bool cond_e_buy = EvaluarCondicion_e(mas);
             señal_contraria = cond_a_buy && cond_d_buy && cond_e_buy;
+        }
+    }
+    else if(tracking.combinacion == "F") {
+        // F = a+b+c+d+e
+        if(tracking.tipo == "BUY") {
+            bool cond_a_sell = EvaluarCondicion_a_Inversa(mas);
+            bool cond_b_sell = EvaluarCondicion_b_Inversa(mas);
+            bool cond_c_sell = EvaluarCondicion_c_Inversa(mas);
+            bool cond_d_sell = EvaluarCondicion_d_Inversa(mas);
+            bool cond_e_sell = EvaluarCondicion_e_Inversa(mas);
+            señal_contraria = cond_a_sell && cond_b_sell && cond_c_sell && cond_d_sell && cond_e_sell;
+        } else {
+            bool cond_a_buy = EvaluarCondicion_a(mas);
+            bool cond_b_buy = EvaluarCondicion_b(mas);
+            bool cond_c_buy = EvaluarCondicion_c(mas);
+            bool cond_d_buy = EvaluarCondicion_d(mas);
+            bool cond_e_buy = EvaluarCondicion_e(mas);
+            señal_contraria = cond_a_buy && cond_b_buy && cond_c_buy && cond_d_buy && cond_e_buy;
+        }
+    }
+    else if(tracking.combinacion == "G") {
+        // G = b+c+d
+        if(tracking.tipo == "BUY") {
+            bool cond_b_sell = EvaluarCondicion_b_Inversa(mas);
+            bool cond_c_sell = EvaluarCondicion_c_Inversa(mas);
+            bool cond_d_sell = EvaluarCondicion_d_Inversa(mas);
+            señal_contraria = cond_b_sell && cond_c_sell && cond_d_sell;
+        } else {
+            bool cond_b_buy = EvaluarCondicion_b(mas);
+            bool cond_c_buy = EvaluarCondicion_c(mas);
+            bool cond_d_buy = EvaluarCondicion_d(mas);
+            señal_contraria = cond_b_buy && cond_c_buy && cond_d_buy;
+        }
+    }
+    else if(tracking.combinacion == "H") {
+        // H = a+c+e
+        if(tracking.tipo == "BUY") {
+            bool cond_a_sell = EvaluarCondicion_a_Inversa(mas);
+            bool cond_c_sell = EvaluarCondicion_c_Inversa(mas);
+            bool cond_e_sell = EvaluarCondicion_e_Inversa(mas);
+            señal_contraria = cond_a_sell && cond_c_sell && cond_e_sell;
+        } else {
+            bool cond_a_buy = EvaluarCondicion_a(mas);
+            bool cond_c_buy = EvaluarCondicion_c(mas);
+            bool cond_e_buy = EvaluarCondicion_e(mas);
+            señal_contraria = cond_a_buy && cond_c_buy && cond_e_buy;
+        }
+    }
+    else if(tracking.combinacion == "I") {
+        // I = a+b
+        if(tracking.tipo == "BUY") {
+            bool cond_a_sell = EvaluarCondicion_a_Inversa(mas);
+            bool cond_b_sell = EvaluarCondicion_b_Inversa(mas);
+            señal_contraria = cond_a_sell && cond_b_sell;
+        } else {
+            bool cond_a_buy = EvaluarCondicion_a(mas);
+            bool cond_b_buy = EvaluarCondicion_b(mas);
+            señal_contraria = cond_a_buy && cond_b_buy;
+        }
+    }
+    else if(tracking.combinacion == "J") {
+        // J = d+e
+        if(tracking.tipo == "BUY") {
+            bool cond_d_sell = EvaluarCondicion_d_Inversa(mas);
+            bool cond_e_sell = EvaluarCondicion_e_Inversa(mas);
+            señal_contraria = cond_d_sell && cond_e_sell;
+        } else {
+            bool cond_d_buy = EvaluarCondicion_d(mas);
+            bool cond_e_buy = EvaluarCondicion_e(mas);
+            señal_contraria = cond_d_buy && cond_e_buy;
+        }
+    }
+    else if(tracking.combinacion == "K") {
+        // K = c+d+e
+        if(tracking.tipo == "BUY") {
+            bool cond_c_sell = EvaluarCondicion_c_Inversa(mas);
+            bool cond_d_sell = EvaluarCondicion_d_Inversa(mas);
+            bool cond_e_sell = EvaluarCondicion_e_Inversa(mas);
+            señal_contraria = cond_c_sell && cond_d_sell && cond_e_sell;
+        } else {
+            bool cond_c_buy = EvaluarCondicion_c(mas);
+            bool cond_d_buy = EvaluarCondicion_d(mas);
+            bool cond_e_buy = EvaluarCondicion_e(mas);
+            señal_contraria = cond_c_buy && cond_d_buy && cond_e_buy;
+        }
+    }
+    else if(tracking.combinacion == "L") {
+        // L = b+c+d+e
+        if(tracking.tipo == "BUY") {
+            bool cond_b_sell = EvaluarCondicion_b_Inversa(mas);
+            bool cond_c_sell = EvaluarCondicion_c_Inversa(mas);
+            bool cond_d_sell = EvaluarCondicion_d_Inversa(mas);
+            bool cond_e_sell = EvaluarCondicion_e_Inversa(mas);
+            señal_contraria = cond_b_sell && cond_c_sell && cond_d_sell && cond_e_sell;
+        } else {
+            bool cond_b_buy = EvaluarCondicion_b(mas);
+            bool cond_c_buy = EvaluarCondicion_c(mas);
+            bool cond_d_buy = EvaluarCondicion_d(mas);
+            bool cond_e_buy = EvaluarCondicion_e(mas);
+            señal_contraria = cond_b_buy && cond_c_buy && cond_d_buy && cond_e_buy;
+        }
+    }
+    else if(tracking.combinacion == "M") {
+        // M = b+d+e
+        if(tracking.tipo == "BUY") {
+            bool cond_b_sell = EvaluarCondicion_b_Inversa(mas);
+            bool cond_d_sell = EvaluarCondicion_d_Inversa(mas);
+            bool cond_e_sell = EvaluarCondicion_e_Inversa(mas);
+            señal_contraria = cond_b_sell && cond_d_sell && cond_e_sell;
+        } else {
+            bool cond_b_buy = EvaluarCondicion_b(mas);
+            bool cond_d_buy = EvaluarCondicion_d(mas);
+            bool cond_e_buy = EvaluarCondicion_e(mas);
+            señal_contraria = cond_b_buy && cond_d_buy && cond_e_buy;
         }
     }
     
@@ -1362,7 +1846,24 @@ void RegistrarResumenCompleto(TradeVirtual &tracking) {
                    FormatearSalida(tracking.salida_cruce_c_info) +
                    FormatearSalida(tracking.salida_cruce_d_info) +
                    FormatearSalida(tracking.salida_cruce_e_info) +
+                   //********************************************************
+                   // Cruces nuevos (7) - v1.06
+                   FormatearSalida(tracking.salida_cruce_f_info) +
+                   FormatearSalida(tracking.salida_cruce_g_info) +
+                   FormatearSalida(tracking.salida_cruce_h_info) +
+                   FormatearSalida(tracking.salida_cruce_i_info) +
+                   FormatearSalida(tracking.salida_cruce_j_info) +
+                   FormatearSalida(tracking.salida_cruce_k_info) +
+                   FormatearSalida(tracking.salida_cruce_l_info) +
                    
+                   // Combos (6) - v1.06
+                   FormatearSalida(tracking.salida_combo_1_info) +
+                   FormatearSalida(tracking.salida_combo_2_info) +
+                   FormatearSalida(tracking.salida_combo_3_info) +
+                   FormatearSalida(tracking.salida_combo_4_info) +
+                   FormatearSalida(tracking.salida_combo_5_info) +
+                   FormatearSalida(tracking.salida_combo_6_info) +
+                   //********************************************************
                    FormatearSalida(tracking.salida_timeout_25_info) +
                    FormatearSalida(tracking.salida_timeout_50_info) +
                    FormatearSalida(tracking.salida_timeout_75_info) +
@@ -1495,7 +1996,24 @@ bool InicializarArchivosCSV() {
         header += "Cruce_c_Time,Cruce_c_Precio,Cruce_c_Pips,Cruce_c_Bars,";
         header += "Cruce_d_Time,Cruce_d_Precio,Cruce_d_Pips,Cruce_d_Bars,";
         header += "Cruce_e_Time,Cruce_e_Precio,Cruce_e_Pips,Cruce_e_Bars,";
+        //********************************************************************************
+        // Cruces nuevos (7) - v1.06
+        header += "Cruce_f_Time,Cruce_f_Precio,Cruce_f_Pips,Cruce_f_Bars,";
+        header += "Cruce_g_Time,Cruce_g_Precio,Cruce_g_Pips,Cruce_g_Bars,";
+        header += "Cruce_h_Time,Cruce_h_Precio,Cruce_h_Pips,Cruce_h_Bars,";
+        header += "Cruce_i_Time,Cruce_i_Precio,Cruce_i_Pips,Cruce_i_Bars,";
+        header += "Cruce_j_Time,Cruce_j_Precio,Cruce_j_Pips,Cruce_j_Bars,";
+        header += "Cruce_k_Time,Cruce_k_Precio,Cruce_k_Pips,Cruce_k_Bars,";
+        header += "Cruce_l_Time,Cruce_l_Precio,Cruce_l_Pips,Cruce_l_Bars,";
         
+        // Combos (6) - v1.06
+        header += "Combo_1_Time,Combo_1_Precio,Combo_1_Pips,Combo_1_Bars,";
+        header += "Combo_2_Time,Combo_2_Precio,Combo_2_Pips,Combo_2_Bars,";
+        header += "Combo_3_Time,Combo_3_Precio,Combo_3_Pips,Combo_3_Bars,";
+        header += "Combo_4_Time,Combo_4_Precio,Combo_4_Pips,Combo_4_Bars,";
+        header += "Combo_5_Time,Combo_5_Precio,Combo_5_Pips,Combo_5_Bars,";
+        header += "Combo_6_Time,Combo_6_Precio,Combo_6_Pips,Combo_6_Bars,";
+        //********************************************************************************
         // Timeouts (17)
         header += "T25_Time,T25_Precio,T25_Pips,T25_Bars,";
         header += "T50_Time,T50_Precio,T50_Pips,T50_Bars,";
@@ -1559,12 +2077,28 @@ void InicializarTrackingVirtual() {
     TrackingBUY_C.activo = false;
     TrackingBUY_D.activo = false;
     TrackingBUY_E.activo = false;
+    TrackingBUY_F.activo = false;
+    TrackingBUY_G.activo = false;
+    TrackingBUY_H.activo = false;
+    TrackingBUY_I.activo = false;
+    TrackingBUY_J.activo = false;
+    TrackingBUY_K.activo = false;
+    TrackingBUY_L.activo = false;
+    TrackingBUY_M.activo = false;
     
     TrackingSELL_A.activo = false;
     TrackingSELL_B.activo = false;
     TrackingSELL_C.activo = false;
     TrackingSELL_D.activo = false;
     TrackingSELL_E.activo = false;
+    TrackingSELL_F.activo = false;
+    TrackingSELL_G.activo = false;
+    TrackingSELL_H.activo = false;
+    TrackingSELL_I.activo = false;
+    TrackingSELL_J.activo = false;
+    TrackingSELL_K.activo = false;
+    TrackingSELL_L.activo = false;
+    TrackingSELL_M.activo = false;
 }
 
 //+------------------------------------------------------------------+
